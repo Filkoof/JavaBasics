@@ -4,6 +4,7 @@ public class Basket {
     private String items = "";
     private int totalPrice = 0;
     private int limit;
+    private  double totalWeight = 0;
 
     public Basket() {
         increaseCount(1);
@@ -57,10 +58,15 @@ public class Basket {
     public void clear() {
         items = "";
         totalPrice = 0;
+        totalWeight = 0;
     }
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    public double getTotalWeight() {
+        return totalWeight;
     }
 
     public boolean contains(String name) {
