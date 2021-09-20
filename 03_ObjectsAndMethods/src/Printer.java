@@ -3,26 +3,19 @@ public class Printer {
     public int pendingPagesCount = 0;
     public int totalCountPagesAllTime = 0;
 
-
-    public static void main(String[] args) {
-
-
-    }
-
-
     public append(String text) {
-        queue = queue + text;
+        queue = "Текст документа: " + text + "\n";
 
     }
 
     public append(String text, String name) {
-        queue = name + "\n" + text;
+        queue = "Название документа: " + name + "\n" + "Текст документа: " + text;
     }
 
     public append(String text, String name, int pages) {
-        queue = name + "\n" + text + pages + "стр.";
+        queue = name + "\n" + text + " " + pages + "стр.";
         pendingPagesCount = pendingPagesCount + pages;
-        totalCountPagesAllTime = totalCountPagesAllTime + pendingPagesCount + pages;
+        totalCountPagesAllTime = totalCountPagesAllTime + pages;
 
     }
 
@@ -30,21 +23,22 @@ public class Printer {
         queue = " ";
     }
 
-    public print(String allInfo) {
-        System.out.println(allInfo);
+    public print(String queue) {
+        System.out.println(queue);
         if (queue.isEmpty()) {
             System.out.println("Введите данные");
         } else {
             System.out.println(queue);
             queue = " ";
+            pendingPagesCount = 0;
         }
     }
 
-    public int getPendingPagesCount() {
+    private int getPendingPagesCount() {
         return pendingPagesCount;
     }
 
-    public int getTotalCountPagesAllTime() {
+    private int getTotalCountPagesAllTime() {
         return totalCountPagesAllTime;
     }
 
