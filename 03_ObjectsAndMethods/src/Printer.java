@@ -34,11 +34,11 @@ public class Printer {
         }
     }
 
-    private int getPendingPagesCount() {
+    public int getPendingPagesCount() {
         return pendingPagesCount;
     }
 
-    private int getTotalCountPagesAllTime() {
+    public int getTotalCountPagesAllTime() {
         return totalCountPagesAllTime;
     }
 
