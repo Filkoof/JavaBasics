@@ -14,6 +14,7 @@ public class Elevator {
     }
 
     public void moveDown() {
+
         currentFloor = currentFloor > minFloor ? currentFloor - 1 : currentFloor;
     }
 
@@ -23,8 +24,8 @@ public class Elevator {
 
     }
 
-    public int move(int floor) {
-        for(floor <= minFloor || floor >= maxFloor) {
+    public void move(int floor) {
+        while (floor <= minFloor || floor >= maxFloor) {
             System.out.println("Этаж: " + currentFloor);
             if (currentFloor < floor) {
                 moveDown();
