@@ -19,4 +19,8 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public int getBarCode() {
+        return barCode;
+    }
 }
