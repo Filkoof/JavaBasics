@@ -2,16 +2,13 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Country country = new Country();
-        country.setCountryName("Россия");
-        country.setArea(17130000);
-        country.setCountPopulation(1440000000);
-        country.setCapitalName("Москва");
-        country.setSeaExit("есть");
+        Phone phone = new Phone();
+        phone.setMemory(256);
+        phone.setNameBrand("iPhone");
+        phone.setNameModel("11 pro");
 
-        System.out.println("Страна: " + country.getCountryName() + "Площадь: " + country.getArea()
-                + "Население: " + country.getCountPopulation()
-                + "Столица: " + country.getCapitalName() + "Выход к морю: " + country.getSeaExit() );
+        System.out.println("Бренд: " + phone.getNameBrand() + "Модель: " + phone.getNameModel()
+                + "Память: " + phone.getMemory());
 
 
     }

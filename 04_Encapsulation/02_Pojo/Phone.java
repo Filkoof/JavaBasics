@@ -3,11 +3,15 @@ public class Phone {
     private String nameBrand;
     private int memory;
     private String nameModel;
-    private boolean haveCamera;
+    private String haveCamera;
 
     public Phone(String nameBrand, String nameModel) {
         this.nameBrand = nameBrand;
         this.nameModel = nameModel;
+    }
+
+    public Phone() {
+
     }
 
     public String getNameBrand() {
@@ -36,14 +40,5 @@ public class Phone {
     public void setNameModel(String nameModel) {
         this.nameModel = nameModel;
     }
-
-    public boolean setHaveCamera() {
-        return haveCamera;
-    }
-
-    public void getHaveCamera(boolean haveCamera) {
-        this.haveCamera = haveCamera;
-    }
-
 
 }
