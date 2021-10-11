@@ -11,14 +11,17 @@ public class Phone {
     }
 
     public String getNameBrand() {
+
         return nameBrand;
     }
 
     public void setNameBrand(String nameBrand) {
+
         this.nameBrand = nameBrand;
     }
 
     public int getMemory() {
+
         return memory;
     }
 
@@ -41,7 +44,6 @@ public class Phone {
     public void getHaveCamera(boolean haveCamera) {
         this.haveCamera = haveCamera;
     }
-
 
 
 }

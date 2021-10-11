@@ -1,14 +1,10 @@
 public class Country {
 
     private String countryName;
-    private int countPopulation;
+    private long countPopulation;
     private int area;
     private String capitalName;
-    private boolean seaExit;
-
-    public Country(String countryName) {
-        this.countryName = countryName;
-    }
+    private String seaExit;
 
     public String getCountryName() {
         return countryName;
@@ -18,7 +14,7 @@ public class Country {
         this.countryName = countryName;
     }
 
-    public int getCountPopulation() {
+    public long getCountPopulation() {
         return countPopulation;
     }
 
@@ -42,11 +38,11 @@ public class Country {
         this.capitalName = capitalName;
     }
 
-    public boolean getSeaExit() {
+    public String getSeaExit() {
         return seaExit;
     }
 
-    public void setSeaExit(boolean seaExit) {
+    public void setSeaExit(String seaExit) {
         this.seaExit = seaExit;
     }
 }
