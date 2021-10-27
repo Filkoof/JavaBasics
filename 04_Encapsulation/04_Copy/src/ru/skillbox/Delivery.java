@@ -16,7 +16,7 @@ public class Delivery {
                     String canFlip,
                     String registrationNumber,
                     String delicate) {
-        this.dimensions = Dimension.getVolume;
+        this.dimensions = Dimension;
         this.weight = weight;
         this.address = address;
         this.canFlip = canFlip;

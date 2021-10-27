@@ -31,8 +31,8 @@ public class Dimensions {
         return height;
     }
 
-    public Dimensions setLength(int lengt) {
-        return new Dimensions(width, height, lengt);
+    public Dimensions setLength(int length) {
+        return new Dimensions(width, height, length);
     }
 
     public int getVolume() {
