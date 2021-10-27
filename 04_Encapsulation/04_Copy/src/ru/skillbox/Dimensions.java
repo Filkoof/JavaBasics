@@ -31,11 +31,11 @@ public class Dimensions {
         return height;
     }
 
-    public Dimensions setLengt(int lengt) {
+    public Dimensions setLength(int lengt) {
         return new Dimensions(width, height, lengt);
     }
 
-    private int sumDimensions() {
+    public int getVolume() {
         return width * height * length;
     }
 

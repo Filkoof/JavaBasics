@@ -1,7 +1,9 @@
 package ru.skillbox;
 
+import java.awt.*;
+
 public class Delivery {
-    private final int dimensions;
+    private final Dimension dimensions;
     private final int weight;
     private final String address;
     private final String canFlip;
@@ -14,7 +16,7 @@ public class Delivery {
                     String canFlip,
                     String registrationNumber,
                     String delicate) {
-        this.dimensions = dimensions;
+        this.dimensions = Dimension.getVolume;
         this.weight = weight;
         this.address = address;
         this.canFlip = canFlip;
