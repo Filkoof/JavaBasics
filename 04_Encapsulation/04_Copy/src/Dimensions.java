@@ -1,5 +1,3 @@
-package ru.skillbox;
-
 public class Dimensions {
     private final int width;
     private final int height;
