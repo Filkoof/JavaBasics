@@ -33,10 +33,6 @@ public class Basket {
         Basket.count = Basket.count + count;
     }
 
-    public static void increaseAllItems(int allItems) {
-        Basket.allItems = Basket.allItems + items;
-    }
-
     public static int getAllItems() {
         return allItems;
     }
@@ -78,21 +74,8 @@ public class Basket {
                 count + " шт. - " + "весом:" + weight + price;
         totalPrice = totalPrice + count * price;
         totalWeight = totalWeight * count;
-        Basket.addFullItem(count);
-        Basket.addFullPrice(price);
-
-    }
-
-    public static void addFullItem(int count) {
-        if (count){
-            Basket.allItems = Basket.allItems + count;
-        } else {
-            Basket.allItems = Basket.allItems + 1;
-        }
-    }
-
-    public static void addFullPrice(int price) {
-        Basket.allTotalPrice = Basket.allTotalPrice + price;
+        Basket.allItems = Basket.allItems + count;
+        Basket.allTotalPrice = Basket.allTotalPrice + totalPrice;
     }
 
     public void clear() {
