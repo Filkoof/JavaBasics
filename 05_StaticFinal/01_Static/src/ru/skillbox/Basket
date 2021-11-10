@@ -25,24 +25,9 @@ public class Basket {
         this.totalPrice = totalPrice;
     }
 
-    public static int getCount() {
-        return count;
-    }
 
     public static void increaseCount(int count) {
         Basket.count = Basket.count + count;
-    }
-
-    public static int getAllItems() {
-        return allItems;
-    }
-
-    public static void increaseAllPrice(int allTotalPrice) {
-        Basket.allTotalPrice = Basket.allTotalPrice + totalPrice;
-    }
-
-    public static int getAllTotalPrice() {
-        return allTotalPrice;
     }
 
 
@@ -73,9 +58,9 @@ public class Basket {
         items = items + "\n" + name + " - " +
                 count + " шт. - " + "весом:" + weight + price;
         totalPrice = totalPrice + count * price;
-        totalWeight = totalWeight * count;
-        Basket.allItems = Basket.allItems + count;
-        Basket.allTotalPrice = Basket.allTotalPrice + totalPrice;
+        totalWeight = totalWeight + weight * count;
+        allItems = allItems + count * Basket.count ;
+        allTotalPrice = allTotalPrice + Basket.count * totalPrice;
     }
 
     public void clear() {
@@ -91,7 +76,7 @@ public class Basket {
     }
 
     public static int averagePerBaskets() {
-        return Basket.allTotalPrice / Basket.count;
+        return Basket.allTotalPrice / Basket.getCount();
     }
 
     public int getTotalPrice() {
@@ -104,6 +89,18 @@ public class Basket {
 
     public boolean contains(String name) {
         return items.contains(name);
+    }
+
+    public static int getAllTotalPrice() {
+        return allTotalPrice;
+    }
+
+    public static int getAllItems() {
+        return allItems;
+    }
+
+    public static int getCount() {
+        return count;
     }
 
     public void print(String title) {
