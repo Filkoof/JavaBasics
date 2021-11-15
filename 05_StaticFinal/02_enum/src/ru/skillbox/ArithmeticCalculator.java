@@ -2,26 +2,21 @@ public class ArithmeticCalculator {
 
     public int x = 0;
     public int y = 0;
-    public final Operation type;
 
-    public ArithmeticCalculator(int x, int y, Operation type) {
+    public ArithmeticCalculator(int x, int y) {
         this.x = x;
         this.y = y;
-        this.type = type;
     }
 
-    public Operation type() {
-        return type;
-    }
-
-    public void Calculate() {
-        if(this.type == Operation.ADD) {
-            System.out.println("Сумма чисел равна: " + x + y);
-        } else if (this.type == Operation.MULTIPLY) {
-            System.out.println("Произведение чисел равно: " + x * y);
-        } else if (this.type == Operation.SUBTRACT) {
-            System.out.println("Разность чисел равна: " + (x - y));
+    public int calculate(Operation type) {
+        if(type == Operation.ADD) {
+            return x + y;
+        } else if (type == Operation.MULTIPLY) {
+            return x * y;
+        } else if (type == Operation.SUBTRACT) {
+            return x - y;
         }
+        return 0;
     }
 
 }
