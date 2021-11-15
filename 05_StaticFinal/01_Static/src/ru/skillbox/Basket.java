@@ -60,7 +60,7 @@ public class Basket {
         totalPrice = totalPrice + count * price;
         totalWeight = totalWeight + weight * count;
         allItems = allItems + count * Basket.count ;
-        allTotalPrice = allTotalPrice + Basket.count * totalPrice;
+        allTotalPrice = allTotalPrice + count * price;
     }
 
     public void clear() {
