@@ -1,11 +1,19 @@
 public class Keyboard {
-    final private KeyboardType type;
-    final private boolean backlight;
-    final double weightKeyboard;
+    private final KeyboardType type;
+    private final boolean backlight;
+    private final double weightKeyboard;
 
     public Keyboard(KeyboardType type, boolean backlight, double weightKeyboard) {
         this.type = type;
         this.backlight = backlight;
         this.weightKeyboard = weightKeyboard;
+    }
+
+    public boolean isBacklight(){
+        return backlight;
+    }
+
+    public double getWeightKeyboard(){
+        return weightKeyboard;
     }
 }

@@ -1,64 +1,76 @@
 public class Computer {
-    private final String cpu; //процессор
-    private final String ram; // оперативная память
-    private final String storage; // Накопитель информации
-    private final String screen; //Экран
-    private final String keyboard; //Клавиатура
-    private final String vendor; //Производитель
-    private final String name; //Название
+    private Cpu cpu; //процессор
+    private Ram ram; // оперативная память
+    private Storage storage; // Накопитель информации
+    private Screen screen; //Экран
+    private Keyboard keyboard; //Клавиатура
+    private String vendor; //Производитель
+    private String name; //Название
+    private double totalWeight;
 
-    public Computer(String cpu,
-                    String ram,
-                    String informationStorage,
-                    String screen,
-                    String keyboard) {
+    public Computer(Cpu cpu,
+                    Ram ram,
+                    Storage storage,
+                    Screen screen,
+                    Keyboard keyboard,
+                    String vendor,
+                    String name) {
         this.cpu = cpu;
         this.ram = ram;
-        this.storage = informationStorage;
+        this.storage = storage;
         this.screen = screen;
         this.keyboard = keyboard;
         this.vendor = vendor;
         this.name = name;
     }
 
-    public String getCpu() {
+    public Cpu getCpu() {
         return cpu;
     }
 
-    public Computer setCpu(String cpu){
-        return new Computer(cpu, ram, storage, screen, keyboard);
+    public void setCpu(Cpu cpu){
+        this.cpu = cpu;
     }
 
-    public String getRam(){
+    public Ram getRam(){
         return ram;
     }
 
-    public Computer setRam(String ram){
-        return new Computer(cpu, ram, storage, screen, keyboard);
+    public void setRam(Ram ram){
+        this.ram = ram;
     }
 
-    public String getInformationStorage(){
+    public Storage getStorage(){
         return storage;
     }
 
-    public Computer setInformationStorage(String informationStorage){
-        return new Computer(cpu, ram, informationStorage, screen, keyboard);
+    public void setStorage(Storage storage){
+        this.storage = storage;
     }
 
-    public String getScreen(){
+    public Screen getScreen(){
         return screen;
     }
 
-    public Computer setScreen(String screen){
-        return new Computer(cpu, ram, storage, screen, keyboard);
+    public void setScreen(Screen screen){
+        this.screen = screen;
     }
 
-    public String getKeyboard(){
+    public Keyboard getKeyboard(){
         return keyboard;
     }
 
-    public Computer setKeyboard(String keyboard){
-        return new Computer(cpu, ram, storage, screen, keyboard);
+    public void setKeyboard(Keyboard keyboard){
+        this.keyboard = keyboard;
+    }
+
+    public double calculateTotalWeight(){
+        totalWeight = cpu.getWeightCpu()
+                + ram.getWeightRam()
+                + storage.getWeightStorage()
+                + screen.getWeightScreen()
+                + keyboard.getWeightKeyboard();
+        return totalWeight;
     }
 
     public String toString() {
