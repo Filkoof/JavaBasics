@@ -5,7 +5,7 @@ public class Container {
         count = count + value;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 }
