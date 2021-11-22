@@ -1,4 +1,4 @@
-package main.java;
+import java.math.BigDecimal;
 
 public class GeometryCalculator {
     private static double circleSquare;
@@ -15,12 +15,12 @@ public class GeometryCalculator {
     // метод должен использовать абсолютное значение radius
     public static double getSphereVolume(double radius) {
         Math.abs(radius);
-        sphereVolume = 4/3 * Math.PI * Math.pow(radius, 3);
+        sphereVolume = Math.PI * Math.pow(Math.abs(radius), 3) * 4 / 3;
         return sphereVolume;
     }
 
     public static boolean isTrianglePossible(double a, double b, double c) {
-        if (a + b > c || b + c > a || c + a > b) {
+        if (a + b > c && b + c > a && c + a > b) {
             return true;
         } else {
             return false;
