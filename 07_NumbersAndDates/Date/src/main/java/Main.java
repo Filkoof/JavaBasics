@@ -19,10 +19,11 @@ public class Main {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy - E")
                 .localizedBy(new Locale("us"));
+        String text = " ";
 
         for (int i = 0;i >= 0 ; i++){
             if (birthday.isBefore(today) || birthday.equals(today)){
-                System.out.println(i + " - " + formatter.format(birthday));
+                text = text + System.lineSeparator() + (i + " - " + formatter.format(birthday));
                 birthday = birthday.plusYears(1);
             }
             else {
@@ -30,6 +31,6 @@ public class Main {
             }
         }
 
-        return " ";
+        return text;
     }
 }
