@@ -1,7 +1,4 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.*;
 
 public class Main {
 
@@ -9,18 +6,19 @@ public class Main {
 
     LocalDate birthday = LocalDate.of(1996,01,21);
 
-    System.out.println();
+    System.out.println(getPeriodFromBirthday(birthday));
 
   }
 
   private static String getPeriodFromBirthday(LocalDate birthday) {
     LocalDate now = LocalDate.now();
-    long difference = now.toEpochDay() - birthday.toEpochDay();
-    int year = (int) (difference / 365);
-    int month = (int) (difference % 365) / 31;
-    int day = (int) (difference % 365) % 31;
+    String text = " ";
 
-    return " ";
+    Period date = Period.between(birthday, now);
+
+    text = text + date.getYears() + " years, " + date.getMonths() + " months, " + date.getDays() + " days";
+
+    return text;
   }
 
 }
