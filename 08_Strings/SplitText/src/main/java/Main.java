@@ -8,7 +8,10 @@ public class Main {
     String[] words = text.split("[^a-zA-Z’]+");
     String split = "";
     for(int i = 0; i < words.length; i++){
-      split += words[i] + System.lineSeparator();
+      if (i != words.length - 1) split += words[i] +  System.lineSeparator();
+      else{
+        split += words[i];
+      }
     }
 
     return split;
