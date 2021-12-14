@@ -6,45 +6,24 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Scanner scanner = new Scanner(System.in);
+    //Scanner scanner = new Scanner(System.in);
+   // String input = scanner.nextLine();
 
-    String regex = "[А-Яа-я \\s\\-]+";
+    String fio = "Салтыков-Щедрин Михаил Евграфович";
+    String space = "[\\s]";
+    String regex = "[А-Яа-я\\-]+";
 
-    String name = "";
-    String surname = "";
-    String lastName = "";
-    String error = "";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(fio);
+
     int count = 0;
 
-    while (true) {
-      String input = scanner.nextLine();
-      for (int i = 0; i < input.length(); i++) {
-        char symbol = input.charAt(i);
-        if (symbol == ' '){
-          count++;
-          continue;
-        }
-        if(input.matches(regex)){
-          if (count == 0) surname += symbol;
-          if (count == 1) name += symbol;
-          if (count == 2) lastName += symbol;
-        } else {
-          error = "Введенная строка не является ФИО";
-          break;
-        }
+    while (matcher.find()) {
+      int start = matcher.start();
+      int end = matcher.end();
+      System.out.println(fio.substring(start, end));
       }
-      if (error != "" || count < 2) {
-        System.out.println("Введенная строка не является ФИО");
-        break;
-      } else {
-        System.out.println("Фамилия: " + surname);
-        System.out.println("Имя: " + name);
-        System.out.println("Отчество: " + lastName);
-        break;
-      }
-
     }
 
-  }
-
 }
+
