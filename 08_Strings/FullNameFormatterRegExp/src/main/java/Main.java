@@ -9,7 +9,6 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     String input = scanner.nextLine();
 
-//    String fio = "Салтыков-Щедрин Михаил Евграфович";
     String surname, name, lastName;
     String regex = "[А-Яа-я\\-]+";
 
@@ -19,9 +18,9 @@ public class Main {
     int firstIndex = input.indexOf(" ");
     int lastIndex = input.lastIndexOf(" ");
 
-    if (matcher.find()) {
+    if (matcher.results().count() == 3) {
       surname = input.substring(0, firstIndex);
-      name = input.substring(firstIndex + 1 , lastIndex);
+      name = input.substring(firstIndex + 1, lastIndex);
       lastName = input.substring(lastIndex + 1);
 
       System.out.println("Фамилия: " + surname);
