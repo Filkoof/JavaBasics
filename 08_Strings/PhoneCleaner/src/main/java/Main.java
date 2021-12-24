@@ -15,8 +15,8 @@ public class Main {
     Matcher matcher = pattern.matcher(formatPhoneNumber(input));
 
     if(matcher.matches()){
-      if(formatPhoneNumber(input).charAt(0) == 8){
-        formatPhoneNumber(input).replaceFirst("8","7");
+      if(formatPhoneNumber(input).startsWith("8")){
+        System.out.println(formatPhoneNumber(input).replaceFirst("8","7"));
       }
       else if(formatPhoneNumber(input).length() == 10){
         System.out.println(formatPhoneNumber("7" + input));
