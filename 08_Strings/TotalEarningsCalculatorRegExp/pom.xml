@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ru.skillbox</groupId>
-  <artifactId>FullNameFormatterRegExp</artifactId>
+  <artifactId>TotalEarningsCalculatorRegExp</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -52,7 +52,7 @@
         <version>3.8.1</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
+          <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
       </plugin>
