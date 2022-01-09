@@ -2,9 +2,13 @@ public class Hospital {
 
     public static float[] generatePatientsTemperatures(int patientsCount) {
 
-        //TODO: напишите метод генерации массива температур пациентов
+        float[] patientTemperature = new float[patientsCount];
 
-        return new float[0];
+        for(int i = 0; i < patientsCount; i++){
+            patientTemperature[i] = Math.round((float) (Math.random() * ((40 - 32) + 1)) + 32);
+        }
+
+        return patientTemperature;
     }
 
     public static String getReport(float[] temperatureData) {
