@@ -3,12 +3,22 @@ public class TwoDimensionalArray {
 
     public static char[][] getTwoDimensionalArray(int size) {
 
-        //TODO: Написать метод, который создаст двумерный массив char заданного размера.
-        // массив должен содержать символ symbol по диагоналям, пример для size = 3
-        // [X,  , X]
-        // [ , X,  ]
-        // [X,  , X]
+        char[][] cross = new char[7][7];
 
-        return new char[0][0];
+        for (int i = 0; i < cross.length; i++) {
+            for (int j = 0; j < cross[i].length; j++) {
+                if (j == i || j == cross.length - 1 - i) {
+                    cross[i][j] = symbol;
+                } else {
+                    cross[i][j] = ' ';
+                }
+            }
+        }
+
+        return cross;
+
     }
 }
+
+
+
