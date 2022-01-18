@@ -3,7 +3,7 @@ public class TwoDimensionalArray {
 
     public static char[][] getTwoDimensionalArray(int size) {
 
-        char[][] cross = new char[7][7];
+        char[][] cross = new char[size][size];
 
         for (int i = 0; i < cross.length; i++) {
             for (int j = 0; j < cross[i].length; j++) {
