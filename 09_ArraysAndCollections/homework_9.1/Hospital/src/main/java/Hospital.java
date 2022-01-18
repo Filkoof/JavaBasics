@@ -8,7 +8,7 @@ public class Hospital {
         float[] patientTemperature = new float[patientsCount];
 
         for(int i = 0; i < patientsCount; i++){
-            float value = ((float) (Math.random() * ((40 - 32) + 1)) + 32);
+            float value = ((float) (Math.random() * ((39 - 32) + 1)) + 32);
             patientTemperature[i] = value;
         }
 
