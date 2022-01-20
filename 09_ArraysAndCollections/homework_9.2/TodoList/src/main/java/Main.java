@@ -16,22 +16,14 @@ public class Main {
         String todo;
 
         while (true) {
-            System.out.println("Введите команду:");
+            System.out.println("\nВведите команду:");
             String input = new Scanner(System.in).nextLine();
 
             switch (input) {
-                case "ADD":
-                    todo = input.toString();
-                    break;
-                case "EDIT":
-                    todo = input.toString();
-                    break;
-                case "DELETE":
-                    todo = input.toString();
-                    break;
-                case "LIST":
-                    todo = input.toString();
-                    break;
+                case "ADD" -> todo = input.toString();
+                case "EDIT" -> todo = input.toString();
+                case "DELETE" -> todo = input.toString();
+                case "LIST" -> todo = input.toString();
             }
         }
 
