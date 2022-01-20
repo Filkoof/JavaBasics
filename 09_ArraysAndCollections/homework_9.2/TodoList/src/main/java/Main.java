@@ -13,26 +13,25 @@ public class Main {
                 "\n\t DELETE - удаление дела" +
                 "\n\t LIST - список дел по порядку");
 
-        Scanner scanner = new Scanner(System.in);
         String todo;
 
-        System.out.println("\nВведите команду:");
-
         while (true) {
-            if (scanner.equals("ADD")){
-                todo = scanner.toString();
-            }
-            else if(scanner.equals("EDIT")){
-                todo = scanner.toString();
-                TodoList.edit(todo , 1);
-            }
-            else if(scanner.equals("DELETE")){
-                todo = scanner.toString();
-                TodoList.delete(1);
-            }
-            else if(scanner.equals("LIST")){
-                todo = scanner.toString();
-                TodoList.getTodos();
+            System.out.println("Введите команду:");
+            String input = new Scanner(System.in).nextLine();
+
+            switch (input) {
+                case "ADD":
+                    todo = input.toString();
+                    break;
+                case "EDIT":
+                    todo = input.toString();
+                    break;
+                case "DELETE":
+                    todo = input.toString();
+                    break;
+                case "LIST":
+                    todo = input.toString();
+                    break;
             }
         }
 

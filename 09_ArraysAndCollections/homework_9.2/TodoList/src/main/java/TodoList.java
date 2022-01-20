@@ -12,7 +12,7 @@ public class TodoList {
 
     public void add(int index, String todo) {
         // TODO: добавьте дело на указаный индекс,
-        //  провер            ьте возможность добавления
+        //  проверьте возможность добавления
         if (todoList.contains(index)) {
             todoList.add(index, todo);
             System.out.println("Дело номер: " + index + " добавлено " + todo);
