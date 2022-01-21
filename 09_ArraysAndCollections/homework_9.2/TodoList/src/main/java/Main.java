@@ -17,12 +17,19 @@ public class Main {
             String input = new Scanner(System.in).nextLine();
 
             switch (input) {
-                case "ADD" -> todoList.add(input);
-                case "EDIT" -> todoList.edit(input,1);
-                case "DELETE" -> todoList.delete(1);
+                case "ADD" -> todoList.add(findIndex(input), input);
+                case "EDIT" -> todoList.edit(input,findIndex(input));
+                case "DELETE" -> todoList.delete(findIndex(input));
                 case "LIST" -> todoList.getTodos();
                 default -> System.out.println("Введена неверная команда");
             }
         }
+    }
+
+    public static int findIndex(String input) {
+        String regex = "[^0-9]";
+        int index = Integer.parseInt(input.replaceAll(regex, ""));
+
+        return index;
     }
 }
