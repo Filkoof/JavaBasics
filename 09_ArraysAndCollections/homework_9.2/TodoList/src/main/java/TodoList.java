@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TodoList {
 
-    public static ArrayList<String> todoList = new ArrayList<>();
+    public ArrayList<String> todoList = new ArrayList<>();
 
     public void add(String todo) {
         todoList.add(todo);
@@ -10,16 +10,16 @@ public class TodoList {
     }
 
     public void add(int index, String todo) {
-        if (todoList.contains(index)) {
+        if (index < todoList.size()) {
             todoList.add(index, todo);
             System.out.println("Дело номер: " + index + " добавлено " + todo);
         } else {
-            System.out.println("Несуществующий индекс.");
+            todoList.add(todo);
         }
     }
 
     public void edit(String todo, int index) {
-        if (todoList.contains(index)){
+        if (index < todoList.size()){
             todoList.set(index, todo);
         } else {
             System.out.println("Несуществующий индекс.");
@@ -27,7 +27,7 @@ public class TodoList {
     }
 
     public void delete(int index) {
-        if (todoList.contains(index)){
+        if (index < todoList.size()){
             todoList.remove(index);
         } else {
             System.out.println("Дела с таким номером не сущестует.");        }

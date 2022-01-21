@@ -16,7 +16,7 @@ public class Main {
             System.out.println("\nВведите команду:");
             String input = new Scanner(System.in).nextLine();
 
-            switch (input) {
+            switch (findCommand(input)) {
                 case "ADD" -> todoList.add(findIndex(input), input);
                 case "EDIT" -> todoList.edit(input,findIndex(input));
                 case "DELETE" -> todoList.delete(findIndex(input));
@@ -24,6 +24,12 @@ public class Main {
                 default -> System.out.println("Введена неверная команда");
             }
         }
+    }
+
+    public static String findCommand(String input) {
+        int end = input.indexOf(' ', 0);
+
+        return input.substring(0, end);
     }
 
     public static int findIndex(String input) {
