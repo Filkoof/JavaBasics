@@ -19,11 +19,11 @@ public class TodoList {
     }
 
     public void edit(String todo, int index) {
-//        if (todoList.contains(index)){
+        if (todoList.contains(index)){
             todoList.set(index, todo);
-//        } else {
-//            System.out.println("Несуществующий индекс.");
-//        }
+        } else {
+            System.out.println("Несуществующий индекс.");
+        }
     }
 
     public void delete(int index) {
