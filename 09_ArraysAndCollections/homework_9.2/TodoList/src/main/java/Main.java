@@ -17,10 +17,11 @@ public class Main {
             String input = new Scanner(System.in).nextLine();
 
             switch (input) {
-                case "ADD" -> System.out.println("Введено ADD");
-                case "EDIT" -> System.out.println("Введено EDIT");
-                case "DELETE" -> System.out.println("Введено DELETE");
-                case "LIST" -> System.out.println("Введено LIST");
+                case "ADD" -> todoList.add(input);
+                case "EDIT" -> todoList.edit(input,1);
+                case "DELETE" -> todoList.delete(1);
+                case "LIST" -> todoList.getTodos();
+                default -> System.out.println("Введена неверная команда");
             }
         }
     }
