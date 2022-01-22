@@ -11,10 +11,11 @@ public class TodoList {
 
     public void add(int index, String todo) {
         if (index < todoList.size()) {
-            todoList.add(index, todo);
             System.out.println("Дело номер: " + index + " добавлено " + todo);
+            todoList.add(index, todo);
         } else {
             todoList.add(todo);
+            System.out.println("Дело добавлено");
         }
     }
 

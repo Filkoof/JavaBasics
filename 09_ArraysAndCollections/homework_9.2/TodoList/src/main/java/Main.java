@@ -12,12 +12,20 @@ public class Main {
                 "\n\t DELETE - удаление дела" +
                 "\n\t LIST - список дел по порядку");
 
+
         while (true) {
             System.out.println("\nВведите команду:");
             String input = new Scanner(System.in).nextLine();
 
+
             switch (findCommand(input)) {
-                case "ADD" -> todoList.add(findIndex(input), input);
+                case "ADD" -> {
+                    if (findIndex(input) != -1) {
+                        todoList.add(findIndex(input), input);
+                    } else {
+                        todoList.add(input);
+                    }
+                }
                 case "EDIT" -> todoList.edit(input,findIndex(input));
                 case "DELETE" -> todoList.delete(findIndex(input));
                 case "LIST" -> todoList.getTodos();
@@ -29,13 +37,21 @@ public class Main {
     public static String findCommand(String input) {
         int end = input.indexOf(' ', 0);
 
+        if(end == -1){
+            return input;
+        }
         return input.substring(0, end);
     }
 
     public static int findIndex(String input) {
         String regex = "[^0-9]";
-        int index = Integer.parseInt(input.replaceAll(regex, ""));
+        String replace = input.replaceAll(regex, "");
 
-        return index;
+        if(replace != "") {
+            int index = Integer.parseInt(replace);
+            return index;
+        }
+
+        return -1;
     }
 }
