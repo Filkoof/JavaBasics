@@ -1,33 +1,35 @@
 import java.util.Scanner;
 
 public class Main {
-    public static final String WRONG_EMAIL_ANSWER = "Неверный формат email";
-    
-    /* TODO:
-        Пример вывода списка Email, после ввода команды LIST в консоль:
-        test@test.com
-        hello@mail.ru
-        - каждый адрес с новой строки
-        - список должен быть отсортирован по алфавиту
-        - email в разных регистрах считается одинаковыми
-           hello@skillbox.ru == HeLLO@SKILLbox.RU
-        - вывод на печать должен быть в нижнем регистре
-           hello@skillbox.ru
-        Пример вывода сообщения об ошибке при неверном формате Email:
-        "Неверный формат email"
-    */
+
+    private static EmailList emailList = new EmailList();
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Список команд:" +
+                "\n\t ADD - добавить email" +
+                "\n\t LIST - список email");
         
         while (true) {
-            String input = scanner.nextLine();
-            if (input.equals("0")) {
-                break;
+            System.out.println("Введите команду:");
+            String input = new Scanner(System.in).nextLine();
+
+            switch (findCommand(input)){
+                case "ADD" -> emailList.add(input);
+                case "LIST" -> emailList.getSortedEmails();
+                default -> System.out.println("Неверная команда");
             }
-            
-            //TODO: write code here
-            
         }
     }
+
+    public static String findCommand (String input) {
+        int end = input.indexOf(' ', 0);
+
+        if(end == -1){
+            return input;
+        }
+
+        return input.substring(0, end);
+    }
+
 }
