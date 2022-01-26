@@ -10,10 +10,10 @@ public class PhoneBook {
     public void addContact(String phone, String name) {
 
         if (checkName(name) && checkPhone(phone)) {
-            if (phoneBook.containsKey(phone)) {
+        if (!phoneBook.containsValue(name)) {
                 phoneBook.put(phone, name);
             } else {
-                phoneBook.put(phone, name.replace(name, name));
+                phoneBook.remove(phone, phoneBook.get(phone));
             }
         }
     }
@@ -37,16 +37,25 @@ public class PhoneBook {
     }
 
     public Set<String> getAllContacts() {
-        TreeSet <String> contacts = new TreeSet<>();
+        TreeSet<String> contacts = new TreeSet<>();
 
         if (!phoneBook.isEmpty()) {
             for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-
-                contacts.add(value + " - " + key);
+                for (Map.Entry<String, String> ignored : phoneBook.entrySet()) {
+                    String key1 = entry.getKey();
+                    if (!key.equals(key1)) {
+                        contacts.add(value + " - " + key + ", " + key1);
+                        System.out.println("test1");
+                    } else {
+                        contacts.add(value + " - " + key);
+                        System.out.println("test2");
+                    }
+                }
             }
         }
+
         return contacts;
     }
 
