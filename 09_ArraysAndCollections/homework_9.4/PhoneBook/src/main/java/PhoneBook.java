@@ -20,23 +20,21 @@ public class PhoneBook {
 
     public String getContactByPhone(String phone) {
         String contacts = "";
-        if (phoneBook.containsValue(phone)){
-            System.out.println("Надо вывести связку ключ + значение");
+        if (!phoneBook.isEmpty()){
+            contacts = phoneBook.get(phone) + " - " + phone;
         }
-        // формат одного контакта "Имя - Телефон"
-        // если контакт не найдены - вернуть пустую строку\
+
         return contacts;
     }
 
     public Set<String> getContactByName(String name) {
+        TreeSet <String> contacts = new TreeSet<>();
 
-        if (phoneBook.containsKey(name)){
-            System.out.println("Надо вывести связку ключ + значение");
+        if (!phoneBook.isEmpty()){
+            contacts.add(name + " - " + phoneBook.firstKey());
         }
-        // формат одного контакта "Имя - Телефон"
-        // если контакт не найден - вернуть пустой TreeSet
-        return new TreeSet<>();
 
+        return contacts;
     }
 
     public Set<String> getAllContacts() {
@@ -44,8 +42,10 @@ public class PhoneBook {
 
         if (!phoneBook.isEmpty()) {
             for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
-                contacts.add(entry.getValue() + " - " + entry.getKey());
-                System.out.println(contacts);
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                contacts.add(value + " - " + key);
             }
         }
         return contacts;
