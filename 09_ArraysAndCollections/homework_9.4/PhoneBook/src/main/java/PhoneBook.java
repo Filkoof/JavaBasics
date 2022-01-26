@@ -1,7 +1,4 @@
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PhoneBook {
 
@@ -10,11 +7,7 @@ public class PhoneBook {
     public void addContact(String phone, String name) {
 
         if (checkName(name) && checkPhone(phone)) {
-        if (!phoneBook.containsValue(name)) {
-                phoneBook.put(phone, name);
-            } else {
-                phoneBook.remove(phone, phoneBook.get(phone));
-            }
+         phoneBook.put(phone, name);
         }
     }
 
@@ -41,17 +34,14 @@ public class PhoneBook {
 
         if (!phoneBook.isEmpty()) {
             for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
-                for (Map.Entry<String, String> ignored : phoneBook.entrySet()) {
-                    String key1 = entry.getKey();
-                    if (!key.equals(key1)) {
-                        contacts.add(value + " - " + key + ", " + key1);
-                        System.out.println("test1");
-                    } else {
-                        contacts.add(value + " - " + key);
-                        System.out.println("test2");
+                if (phoneBook.containsValue(entry.getValue())) {
+                    ArrayList<String> numbers = new ArrayList<>();
+                    for (String key : phoneBook.keySet()) {
+                        if (phoneBook.get(key).equals(entry.getValue())) {
+                            numbers.add(key);
+                        }
                     }
+                    contacts.add(entry.getValue() + " - " + String.join(", ", numbers));
                 }
             }
         }

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static PhoneBook phoneBook = new PhoneBook();
+    private static final PhoneBook phoneBook = new PhoneBook();
 
     public static void main(String[] args) {
 
