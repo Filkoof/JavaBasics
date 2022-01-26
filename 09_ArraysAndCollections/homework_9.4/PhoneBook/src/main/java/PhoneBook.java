@@ -10,10 +10,10 @@ public class PhoneBook {
     public void addContact(String phone, String name) {
 
         if (checkName(name) && checkPhone(phone)) {
-            if (phoneBook.containsValue(phone)) {
-                phoneBook.put(phone, phoneBook.get(name));
-            } else {
+            if (phoneBook.containsKey(phone)) {
                 phoneBook.put(phone, name);
+            } else {
+                phoneBook.put(phone, name.replace(name, name));
             }
         }
     }
@@ -29,7 +29,6 @@ public class PhoneBook {
 
     public Set<String> getContactByName(String name) {
         TreeSet <String> contacts = new TreeSet<>();
-
         if (!phoneBook.isEmpty()){
             contacts.add(name + " - " + phoneBook.firstKey());
         }
