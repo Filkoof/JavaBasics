@@ -38,8 +38,7 @@ public class CoolNumbers {
     }
 
     public static boolean binarySearchInList(List<String> sortedList, String number) {
-
-        if (sortedList.contains(number)) {
+        if (!(Collections.binarySearch(sortedList, number) == -1)) {
             System.out.println("Бинарный поиск: номер найден, поиск занял "
                     + (System.currentTimeMillis() - start));
             return true;
