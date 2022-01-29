@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class CoolNumbers {
-    private static long start = System.currentTimeMillis();
 
     public static List<String> generateCoolNumbers() {
         ArrayList <String> numbers = new ArrayList<>();
@@ -23,6 +22,7 @@ public class CoolNumbers {
     }
 
     public static boolean bruteForceSearchInList(List<String> list, String number) {
+        long start = System.currentTimeMillis();
 
         for (int i = 0; i < list.size(); i++){
             if (number.equals(list.get(i))){
@@ -38,6 +38,8 @@ public class CoolNumbers {
     }
 
     public static boolean binarySearchInList(List<String> sortedList, String number) {
+        long start = System.currentTimeMillis();
+
         if (!(Collections.binarySearch(sortedList, number) == -1)) {
             System.out.println("Бинарный поиск: номер найден, поиск занял "
                     + (System.currentTimeMillis() - start));
@@ -50,6 +52,8 @@ public class CoolNumbers {
 
 
     public static boolean searchInHashSet(HashSet<String> hashSet, String number) {
+        long start = System.currentTimeMillis();
+
         if (hashSet.contains(number)){
             System.out.println("Поиск в HashSet: номер найден, поиск занял "
                     + (System.currentTimeMillis() - start));
@@ -61,6 +65,8 @@ public class CoolNumbers {
     }
 
     public static boolean searchInTreeSet(TreeSet<String> treeSet, String number) {
+        long start = System.currentTimeMillis();
+
         if (treeSet.contains(number)){
             System.out.println("Поиск в TreeSet: номер найден, поиск занял "
                     + (System.currentTimeMillis() - start));
