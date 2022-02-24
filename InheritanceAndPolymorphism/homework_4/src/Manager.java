@@ -15,4 +15,9 @@ public class Manager
 
         return (int) (fixSalary + (income * bonus));
     }
+
+    @Override
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }

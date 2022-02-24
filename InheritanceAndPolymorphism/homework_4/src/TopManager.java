@@ -19,4 +19,9 @@ public class TopManager
         }
         return income;
     }
+
+    @Override
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }

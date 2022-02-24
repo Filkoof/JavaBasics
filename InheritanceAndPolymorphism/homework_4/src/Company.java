@@ -5,9 +5,12 @@ import java.util.List;
 public class Company {
 
     public int income;
+    public String nameCompany;
     ArrayList <Employee> employeeList;
 
-    public Company(){
+    public Company(String nameCompany){
+        this.nameCompany = nameCompany;
+        this.income = (int) (Math.random() * ((14_000_000 - 8_000_000) + 1));
     }
 
     public void hire(Employee employee) {
@@ -23,7 +26,7 @@ public class Company {
     }
 
     public int getIncome(){
-        return income = (int) (Math.random() * ((14_000_000 - 8_000_000) + 1));
+        return this.income;
     }
 
     public ArrayList<Employee> getTopSalaryStaff(int count) {
@@ -35,9 +38,11 @@ public class Company {
         });
 
         for (int i = 0; i < count; i++){
-
+            if (count < employeeList.size()) {
+                System.out.println(employeeList.get(i));
+            }
         }
-        return getTopSalaryStaff(count);
+        return employeeList;
     }
 
     public ArrayList<Employee> getLowestSalaryStaff(int count) {
@@ -49,8 +54,10 @@ public class Company {
         });
 
         for (int i = 0; i < count; i++){
-
+            if (count < employeeList.size()) {
+                System.out.println(employeeList.get(i));
+            }
         }
-        return getLowestSalaryStaff(count);
+        return employeeList;
     }
 }

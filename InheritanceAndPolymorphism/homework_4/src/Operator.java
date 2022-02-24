@@ -11,4 +11,9 @@ public class Operator
     public int getMonthSalary() {
         return 60_000;
     }
+
+    @Override
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }
