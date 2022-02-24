@@ -37,8 +37,8 @@ public class Company {
             }
         });
 
-        for (int i = 0; i < count; i++){
-            if (count < employeeList.size()) {
+        for (int i = 0; i <= count; i++){
+            if (count <= employeeList.size() && count > 0) {
                 System.out.println(employeeList.get(i));
             }
         }
@@ -53,8 +53,8 @@ public class Company {
             }
         });
 
-        for (int i = 0; i < count; i++){
-            if (count < employeeList.size()) {
+        for (int i = 0; i <= count; i++){
+            if (count <= employeeList.size() && count > 0) {
                 System.out.println(employeeList.get(i));
             }
         }
