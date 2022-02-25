@@ -2,6 +2,7 @@ public class Operator
         implements Employee {
 
     private Company company;
+    private int salary;
 
     public Operator(Company company) {
         this.company = company;
@@ -9,11 +10,17 @@ public class Operator
 
     @Override
     public int getMonthSalary() {
-        return 60_000;
+        salary = 50_000;
+        return salary;
     }
 
     @Override
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "Operator" + ", salary:" + salary;
     }
 }

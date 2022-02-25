@@ -2,6 +2,7 @@ public class TopManager
         implements Employee {
 
     private Company company;
+    private int salary;
 
     public TopManager(Company company) {
         this.company = company;
@@ -9,19 +10,23 @@ public class TopManager
 
     @Override
     public int getMonthSalary() {
-        int income;
         int fixSalary = 80_000;
         if (company.getIncome() > 10_000_000){
             double bonus = 1.5;
-            income = (int) (fixSalary + (fixSalary * bonus));
+            salary = (int) (fixSalary + (fixSalary * bonus));
         } else {
-            income = fixSalary;
+            salary = fixSalary;
         }
-        return income;
+        return salary;
     }
 
     @Override
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "TopManager" + ", salary:" + salary;
     }
 }
