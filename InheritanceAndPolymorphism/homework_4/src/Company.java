@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Company {
 
-    public String nameCompany;
-    ArrayList <Employee> employeeList = new ArrayList<>();
+    private final String nameCompany;
+    public ArrayList <Employee> employeeList = new ArrayList<>();
     Comparator<Employee> salaryComparator = new SalaryComparator();
 
     public Company(String nameCompany){
