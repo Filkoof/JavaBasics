@@ -3,16 +3,16 @@ public class Manager
 
     private Company company;
     private int salary;
+    private final int sales;
 
     public Manager(Company company) {
         this.company = company;
-        this.salary = (int) (Math.random() * ((140_000 - 115_000) + 1));
+        this.sales = (int) (Math.random() * ((140_000 - 115_000) + 1)  + 115_000);
     }
 
     @Override
     public int getMonthSalary() {
-        int income = this.salary;
-        salary = 60_000 + (int) (salary + (income * 0.05));
+        salary = (int) (60_000 + (this.sales * 0.05));
 
         return salary;
     }
