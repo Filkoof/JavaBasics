@@ -24,8 +24,6 @@ public class Manager
 
     @Override
     public String toString() {
-        return "Manager" +
-                "company:" + company +
-                ", salary:" + salary;
+        return "Manager" + ", salary:" + salary;
     }
 }
