@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Company {
 
     private final String nameCompany;
+    private final int income;
     public ArrayList <Employee> employeeList = new ArrayList<>();
-    Comparator<Employee> salaryComparator = new SalaryComparator();
 
     public Company(String nameCompany){
         this.nameCompany = nameCompany;
+        this.income = (int) (Math.random() * ((14_000_000 - 8_000_000) + 1) + 8_000_000);
     }
 
     public void hire(Employee employee) {
@@ -29,11 +28,11 @@ public class Company {
     }
 
     public int getIncome(){
-        return (int) (Math.random() * ((14_000_000 - 8_000_000) + 1) + 8_000_000);
+        return this.income;
     }
 
     public ArrayList<Employee> getTopSalaryStaff(int count) {
-        employeeList.sort(salaryComparator);
+        employeeList.sort(new SalaryComparator());
         for (int i = employeeList.size() - 1; i >= employeeList.size() - count; i--){
             if (count <= employeeList.size() && count > 0) {
                 System.out.println(employeeList.get(i));
@@ -43,7 +42,7 @@ public class Company {
     }
 
     public ArrayList<Employee> getLowestSalaryStaff(int count) {
-        Collections.sort(employeeList, salaryComparator);
+        employeeList.sort(new SalaryComparator());
         for (int i = 0; i <= count; i++){
             if (count <= employeeList.size() && count > 0) {
                 System.out.println(employeeList.get(i));

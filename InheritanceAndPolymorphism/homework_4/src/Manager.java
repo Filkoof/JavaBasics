@@ -6,11 +6,12 @@ public class Manager
 
     public Manager(Company company) {
         this.company = company;
+        this.salary = (int) (Math.random() * ((140_000 - 115_000) + 1));
     }
 
     @Override
     public int getMonthSalary() {
-        int income = (int) (Math.random() * ((140_000 - 115_000) + 1));
+        int income = this.salary;
         int fixSalary = 60_000;
         double bonus = 0.05;
         salary = (int) (fixSalary + (income * bonus));
