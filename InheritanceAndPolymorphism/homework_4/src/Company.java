@@ -5,7 +5,7 @@ public class Company {
 
     private final String nameCompany;
     private final int income;
-    public ArrayList <Employee> employeeList = new ArrayList<>();
+    private final ArrayList <Employee> employeeList = new ArrayList<>();
 
     public Company(String nameCompany){
         this.nameCompany = nameCompany;
@@ -16,11 +16,10 @@ public class Company {
         employeeList.add(employee);
     }
 
-    public List<Employee> hireAll(Employee employee,int count) {
+    public void hireAll(Employee employee,int count) {
         for (int i = 0; i <= count; i++){
-            employeeList.add(employee);
+            hire(employee);
         }
-        return employeeList;
     }
 
     public void fire(Employee employee){
@@ -29,6 +28,10 @@ public class Company {
 
     public int getIncome(){
         return this.income;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return new ArrayList<>(employeeList);
     }
 
     public ArrayList<Employee> getTopSalaryStaff(int count) {

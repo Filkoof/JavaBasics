@@ -12,9 +12,7 @@ public class Manager
     @Override
     public int getMonthSalary() {
         int income = this.salary;
-        int fixSalary = 60_000;
-        double bonus = 0.05;
-        salary = (int) (fixSalary + (income * bonus));
+        salary = 60_000 + (int) (salary + (income * 0.05));
 
         return salary;
     }
