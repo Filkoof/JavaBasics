@@ -25,9 +25,9 @@ public class Main {
         c1.add(Calendar.HOUR,2);
 
         nearestFlights = flights.stream()
-                .filter(flight -> flight.getType() == Flight.Type.DEPARTURE)
-                .filter(flight -> flight.getDate().after(c.getTime()))
-                .filter(flight -> flight.getDate().before(c1.getTime()))
+                .filter(flight -> flight.getType() == Flight.Type.DEPARTURE
+                        && flight.getDate().after(c.getTime())
+                        && flight.getDate().before(c1.getTime()))
                 .collect(Collectors.toList());
 
         return nearestFlights;
