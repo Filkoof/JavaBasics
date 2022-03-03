@@ -1,6 +1,4 @@
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Main {
 
@@ -13,10 +11,13 @@ public class Main {
     }
 
     public static Employee findEmployeeWithHighestSalary(List<Employee> staff, int year) {
-       Optional<Employee> optional = staff.stream()
-                .filter(e -> e.getWorkStart().equals(year))
-                .max(Comparator.comparing(Employee::getSalary));
-        Employee employee = optional.get();
-        return employee;
+        return staff.stream()
+                .filter(e -> {
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(e.getWorkStart());
+                    return c.get(Calendar.YEAR) == year;
+                })
+                .max(Comparator.comparing(Employee::getSalary)).orElse(null);
     }
 }
+
