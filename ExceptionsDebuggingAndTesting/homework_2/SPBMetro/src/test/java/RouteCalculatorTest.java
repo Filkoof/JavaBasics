@@ -20,13 +20,12 @@ public class RouteCalculatorTest extends TestCase {
         stationIndex.addLine(line3);
 
         stationIndex.addStation(new Station("Петровская",line1));
-        stationIndex.addStation(new Station("Арбузная",line1));
         stationIndex.addStation(new Station("Казанская",line1));
         stationIndex.addStation(new Station("Летовская",line1));
 
         stationIndex.addStation(new Station("Морковная", line2));
         stationIndex.addStation(new Station("Яблочная", line2));
-        stationIndex.addStation(new Station("Крапоткинская", line2));
+        stationIndex.addStation(new Station("Кропоткинская", line2));
 
         stationIndex.addStation(new Station("Сахарная", line3));
         stationIndex.addStation(new Station("Бумажная", line3));
