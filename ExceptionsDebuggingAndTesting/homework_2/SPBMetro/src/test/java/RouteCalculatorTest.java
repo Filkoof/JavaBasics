@@ -41,6 +41,20 @@ public class RouteCalculatorTest extends TestCase {
         stationIndex.addConnection(connection2);
     }
 
+    public void testGetShortestRoute(){
+    }
+
+    public void testCalculateDuration(){
+        route = new ArrayList<>();
+
+        route.add(stationIndex.getStation("Летовская"));
+        route.add(stationIndex.getStation("Казанская"));
+        route.add(stationIndex.getStation("Морковная"));
+        double actual = RouteCalculator.calculateDuration(route);
+        double excepted = 6;
+        assertEquals(excepted, actual);
+    }
+
     @Override
     protected void tearDown() throws Exception {
 
