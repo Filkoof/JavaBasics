@@ -50,7 +50,8 @@ public class RouteCalculatorTest extends TestCase {
         excepted.add(stationIndex.getStation("Летовская", 1));
 
         List<Station> actual;
-        actual =
+        actual = routeCalculator.getShortestRoute(stationIndex.getStation("Петровская"),
+                stationIndex.getStation("Летовская"));
 
         assertEquals(excepted, actual);
     }
