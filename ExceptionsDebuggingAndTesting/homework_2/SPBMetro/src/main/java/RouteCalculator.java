@@ -21,9 +21,11 @@ public class RouteCalculator {
             return route;
         }
 
-        route = getRouteWithOneConnection(from, to);
-        if (route != null) {
-            return route;
+        if (stationIndex.getConnectedStations(from).size() == 1) {
+            route = getRouteWithOneConnection(from, to);
+            if (route != null) {
+                return route;
+            }
         }
 
         route = getRouteWithTwoConnections(from, to);
