@@ -11,7 +11,7 @@ public class Main {
                 System.out.println(FileUtils.getReadableSize(FileUtils.calculateFolderSize(input)));
             }
         } catch (Exception ex){
-            System.out.println("Ошибка");
+            System.out.println(ex.getStackTrace());
         }
      }
 }
