@@ -22,7 +22,7 @@ public class Movements {
 
             lines.remove(0);
             for (String line : lines) {
-                String[] fragments = oneForm(line).split(",",8);
+                String[] fragments = oneForm(line).split(",");
 
                 double income = Double.parseDouble(fragments[6]);
                 double expense = Double.parseDouble(fragments[7]);
@@ -48,22 +48,25 @@ public class Movements {
     }
 
     public static String oneForm(String line) {
-        String regex = "\".+\"";
-        String temp = line;
+        String[] fragments = line.split("\"");
+        String temp;
+        String split = "";
 
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(temp);
+        String regex = "^[\\d]+,[\\d]+";
 
-        if (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            line.substring(start, end)
-                    .replaceAll("\"", "")
-                    .replace(",", ".");
-            return temp;
-        } else {
-            return line;
+        for (int i = 0; i < fragments.length; i++) {
+            temp = fragments[i];
+
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(temp);
+
+            if (matcher.find()) {
+                split += temp.replaceAll(",", ".");
+            } else {
+                split += temp;
+            }
         }
+        return split;
     }
 
     public double getExpenseSum() {
