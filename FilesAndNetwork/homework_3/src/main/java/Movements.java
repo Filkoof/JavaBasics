@@ -76,5 +76,9 @@ public class Movements {
     public double getIncomeSum() {
         return incomeSum;
     }
+
+    public List getOperationDescription() {
+        return operationDescription;
+    }
 }
 

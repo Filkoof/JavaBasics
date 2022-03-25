@@ -5,6 +5,8 @@ public class Main {
     public static void main(String[] args) {
         Movements movements = new Movements(MOVEMENT_LIST_CSV);
 
-        System.out.println(movements.readMovementsFromFile(MOVEMENT_LIST_CSV));
+        System.out.println(movements.getExpenseSum());
+        System.out.println(movements.getIncomeSum());
+        System.out.println(movements.getOperationDescription());
     }
 }
