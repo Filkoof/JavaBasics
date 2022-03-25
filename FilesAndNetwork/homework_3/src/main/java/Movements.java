@@ -8,29 +8,29 @@ import java.util.regex.Pattern;
 
 public class Movements {
 
-    private List<String> operationDescription = new ArrayList<>();
-    private double incomeSum;
-    private double expenseSum;
+    private static List<String> operationDescription = new ArrayList<>();
+    private static double incomeSum;
+    private static double expenseSum;
 
     public Movements(String pathMovementsCsv) {
         readMovementsFromFile(pathMovementsCsv);
     }
 
-    public void readMovementsFromFile(String path){
+    public static void readMovementsFromFile(String path){
         try {
             List<String> lines = Files.readAllLines(Paths.get(path));
 
+
             lines.remove(0);
             for (String line : lines){
-                String[] fragments = oneForm(line).split(",");
+                String[] fragments = line.split(",");
+                double income = Double.parseDouble(fragments[6]);
+                double expense = Double.parseDouble(fragments[7]);
 
                 if (fragments.length != 8) {
                     System.out.println("Wrong line: " + line);
                     continue;
                 }
-
-                double income = Double.parseDouble(fragments[6]);
-                double expense = Double.parseDouble(fragments[7]);
 
                 if (income != 0){
                     incomeSum += income;
@@ -49,22 +49,22 @@ public class Movements {
 
     public static String oneForm(String line){
         String regex = "\".+\"";
+        String temp = line;
 
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(line);
+        Matcher matcher = pattern.matcher(temp);
 
-        while (matcher.find()){
+        if (matcher.find()){
             int start = matcher.start();
             int end = matcher.end();
-            line.substring(start, end)
+            line.substring(start, end + 1)
                     .replaceAll("\"", "")
                     .replace(",", ".");
 
+            return temp;
+        } else {
             return line;
-
         }
-        return line;
-
     }
 
     public double getExpenseSum() {
@@ -73,5 +73,10 @@ public class Movements {
 
     public double getIncomeSum() {
         return incomeSum;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
