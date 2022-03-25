@@ -23,7 +23,7 @@ public class Movements {
 
             lines.remove(0);
             for (String line : lines){
-                String[] fragments = line.split(",");
+                String[] fragments = oneForm(line).split(",");
                 double income = Double.parseDouble(fragments[6]);
                 double expense = Double.parseDouble(fragments[7]);
 
