@@ -2,9 +2,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,22 +22,20 @@ public class Movements {
 
             lines.remove(0);
             for (String line : lines) {
-                String[] fragments = line.split(",", 8);
+                String[] fragments = oneForm(line).split(",",8);
 
-                double income = Double.parseDouble(fragments[6].replaceAll("\"", "")
-                        .replace(",", "."));
-                double expense = Double.parseDouble(fragments[7].replaceAll("\"", "")
-                        .replace(",", "."));
+                double income = Double.parseDouble(fragments[6]);
+                double expense = Double.parseDouble(fragments[7]);
 
-//                if (fragments.length != 8) {
-//                    System.out.println("Wrong line: " + line);
-//                    continue;
-//                }
+                if (fragments.length != 8) {
+                    System.out.println("Wrong line: " + line);
+                    continue;
+                }
 
                 if (income != 0){
-                    this.incomeSum += income;
+                    incomeSum += income;
                 } else {
-                    this.expenseSum += expense;
+                    expenseSum += expense;
                 }
 
                 if (expense != 0) {
