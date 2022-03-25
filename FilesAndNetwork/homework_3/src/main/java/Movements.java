@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Movements {
 
-    private static List<String> operationDescription = new ArrayList<>();
+    private static final List<String> operationDescription = new ArrayList<>();
     private double incomeSum;
     private double expenseSum;
 
@@ -39,7 +39,11 @@ public class Movements {
                 }
 
                 if (expense != 0) {
-                    operationDescription.add(fragments[5].concat(fragments[7]));
+                    operationDescription
+                            .add(cleanOperationDescription(fragments[5])
+                            .concat(": ")
+                            .concat(fragments[7])
+                            .concat("\n"));
                 }
             }
         } catch (IOException e) {
@@ -50,23 +54,27 @@ public class Movements {
     public static String oneForm(String line) {
         String[] fragments = line.split("\"");
         String temp;
-        String split = "";
+        StringBuilder split = new StringBuilder();
 
         String regex = "^[\\d]+,[\\d]+";
 
-        for (int i = 0; i < fragments.length; i++) {
-            temp = fragments[i];
+        for (String fragment : fragments) {
+            temp = fragment;
 
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(temp);
 
             if (matcher.find()) {
-                split += temp.replaceAll(",", ".");
+                split.append(temp.replaceAll(",", "."));
             } else {
-                split += temp;
+                split.append(temp);
             }
         }
-        return split;
+        return split.toString();
+    }
+
+    public static String cleanOperationDescription(String operation){
+        return operation.replaceAll("[^a-zA-Z]+", " ");
     }
 
     public double getExpenseSum() {
@@ -77,8 +85,10 @@ public class Movements {
         return incomeSum;
     }
 
-    public List getOperationDescription() {
-        return operationDescription;
+    public String toString() {
+       return "Сумма расходов: " + expenseSum + "\n" +
+               "Сумма доходов: " + incomeSum + "\n" +
+               "Суммы расходов по организациям: \n" + operationDescription;
     }
 }
 
