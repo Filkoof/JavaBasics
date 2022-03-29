@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class Main {
-    private static final String IMAGES_DIR = "images/";
+    private static final String IMAGES_DIR = "images/images";
 
     public static void main(String[] args) {
         try {
