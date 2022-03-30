@@ -15,15 +15,15 @@ public class DownloadFile {
 
         for (Element element : elements) {
             File image = new File(element.attr("abs:src"));
-
             URL imageUrl = new URL(element.attr("abs:src"));
+
             InputStream input = imageUrl.openStream();
-            OutputStream output = new BufferedOutputStream(
-                    new FileOutputStream(Paths.get(savePath) + image.getName()));
+            FileOutputStream output = new FileOutputStream(Paths.get(savePath) + "\\" + image.getName());
 
-            byte[] buffer = new byte[2048];
+            byte[] buffer = new byte[1024];
+            int length;
 
-            while (input.read(buffer) != -1){
+            while ((length = input.read(buffer)) != -1){
                 output.write(buffer);
             }
             output.close();
