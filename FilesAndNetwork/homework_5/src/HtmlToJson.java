@@ -1,5 +1,5 @@
 import core.Line;
-import core.Station;
+import core.Stations;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class HtmlToJson {
 
     public static Map<String, Line[]> linesMap = new HashMap<>();
-    public static Map<String, Station> stationsMap = new HashMap<>();
+    public static Map<String, Stations> stationsMap = new HashMap<>();
 
     public static void parseHtml(String url) throws IOException {
         Document doc = Jsoup.connect(url).maxBodySize(0).get();
@@ -40,9 +40,9 @@ public class HtmlToJson {
 
             Arrays.fill(stationsArray, station.getElementsByAttributeValue("class", "name").text());
 
-            Station stationAdd = new Station(station.attr("data-line"), stationsArray);
+            Stations stationsAdd = new Stations(station.attr("data-line"), stationsArray);
 
-            stationsMap.put("stations",stationAdd);
+            stationsMap.put("stations",stationsAdd);
         }
     }
 }

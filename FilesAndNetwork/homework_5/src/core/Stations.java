@@ -1,10 +1,10 @@
 package core;
 
-public class Station {
+public class Stations {
     private String number;
     private String[] name;
 
-    public Station(String number, String[] name){
+    public Stations(String number, String[] name){
         this.number = number;
         this.name = name;
     }
