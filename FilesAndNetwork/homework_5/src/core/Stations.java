@@ -1,8 +1,10 @@
 package core;
 
+import java.util.Arrays;
+
 public class Stations {
-    private String number;
-    private String[] name;
+    private final String number;
+    private final String[] name;
 
     public Stations(String number, String[] name){
         this.number = number;
@@ -11,5 +13,15 @@ public class Stations {
 
     public String getNumber() {
         return number;
+    }
+
+    public String[] getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Номер линии: " + number +
+                "Имя станции: " + Arrays.toString(name) + "\n";
     }
 }

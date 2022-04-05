@@ -16,4 +16,10 @@ public class Line {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Номер линии: " + number
+                + " Имя линии: " + name + "\n";
+    }
 }
