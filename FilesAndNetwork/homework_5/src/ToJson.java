@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import core.Metro;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,9 @@ public class ToJson {
     public static void makeJson(){
 
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), ParseHtml.linesMap);
+//            objectMapper.writerWithDefaultPrettyPrinter()
+//                    .writeValue(new File(path), new Metro(ParseHtml.lineArray, ParseHtml.stationsMap));
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), ParseHtml.connectionsArrayList);
         } catch (IOException e) {
             e.printStackTrace();
         }
