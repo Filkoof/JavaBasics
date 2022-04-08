@@ -1,4 +1,4 @@
-import core.Connections;
+import core.Station;
 import core.Line;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,7 +14,7 @@ public class ParseHtml {
 
     public static Map<String, String[]> stationsMap = new LinkedHashMap<>();
     public static Line[] lineArray;
-    public static ArrayList<Connections> connectionsArrayList = new ArrayList<>();
+    public static ArrayList<ArrayList<Station>> connectionsArrayList = new ArrayList<>();
 
     public static void parseToObjects(String url) throws IOException {
         Document doc = Jsoup.connect(url).maxBodySize(0).get();
@@ -57,20 +57,42 @@ public class ParseHtml {
         }
     }
 
-    public static void makeConnections(Document doc){
-        Elements connections = doc.select(".single-station span.t-icon-metroln");
+    public static void makeConnections(Document doc) {
+        Elements lines = doc.select(".js-depend");
+        Elements stations = doc.select(".js-metro-stations");
 
-        for (Element connection : connections) {
-            String station = connection.attr("title");
-            int stationFirstIndex = station.indexOf('«');
-            int stationLastIndex = station.lastIndexOf('»');
+        int index = 0;
 
-            String line = connection.attr("class");
-            int lineIndex = line.lastIndexOf('-');
+        for (Element line : lines) {
+            String stationNumber = line.select(".js-metro-stations").attr("data-line");
 
-            Connections connectionsAdd = new Connections(line.substring(lineIndex + 1),
-                    station.substring(stationFirstIndex + 1,stationLastIndex));
-            connectionsArrayList.add(connectionsAdd);
+            for (Element station : stations.get(index).select(".single-station")) {
+                String stationName = station.select("span.name").text();
+
+                if (!station.select("span.t-icon-metroln").isEmpty()) {
+                    Elements connections = station.select("span.t-icon-metroln");
+                    ArrayList<Station> connectionsAdd = new ArrayList<>();
+
+                    Station stationFrom = new Station(stationNumber, stationName);
+                    connectionsAdd.add(stationFrom);
+
+                    for (Element connection : connections){
+                        String stationConnection = connection.attr("title");
+                        int stationFirstIndex = stationConnection.indexOf('«');
+                        int stationLastIndex = stationConnection.lastIndexOf('»');
+
+                        String lineConnection = connection.attr("class");
+                        int lineIndex = lineConnection.lastIndexOf('-');
+
+                        Station stationTo = new Station(lineConnection.substring(lineIndex + 1),
+                                stationConnection.substring(stationFirstIndex + 1, stationLastIndex));
+                        connectionsAdd.add(stationTo);
+                    }
+                    connectionsArrayList.add(connectionsAdd);
+                }
+            }
+            index++;
         }
     }
 }
+

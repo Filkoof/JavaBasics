@@ -11,9 +11,10 @@ public class ToJson {
     public static void makeJson(){
 
         try {
-//            objectMapper.writerWithDefaultPrettyPrinter()
-//                    .writeValue(new File(path), new Metro(ParseHtml.lineArray, ParseHtml.stationsMap));
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), ParseHtml.connectionsArrayList);
+            objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(new File(path), new Metro(ParseHtml.lineArray,
+                                                          ParseHtml.stationsMap,
+                                                          ParseHtml.connectionsArrayList));
         } catch (IOException e) {
             e.printStackTrace();
         }

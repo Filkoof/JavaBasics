@@ -1,10 +1,10 @@
 package core;
 
-public class Connections {
+public class Station {
     private String line;
     private String station;
 
-    public Connections(String line, String station){
+    public Station(String line, String station){
         this.line = line;
         this.station = station;
     }
@@ -19,6 +19,6 @@ public class Connections {
 
     @Override
     public String toString() {
-        return "Номер линии: " + line + " Переход на станцию:  " + station;
+        return "Номер линии: " + line + " Имя станции:  " + station;
     }
 }
