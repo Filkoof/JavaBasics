@@ -6,9 +6,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ParseHtml {
 
@@ -60,6 +58,7 @@ public class ParseHtml {
     public static void makeConnections(Document doc) {
         Elements lines = doc.select(".js-depend");
         Elements stations = doc.select(".js-metro-stations");
+        ArrayList<Station> connectionsCheck = new ArrayList();
 
         int index = 0;
 
@@ -74,9 +73,11 @@ public class ParseHtml {
                     ArrayList<Station> connectionsAdd = new ArrayList<>();
 
                     Station stationFrom = new Station(stationNumber, stationName);
+                    Station stationTo;
+
                     connectionsAdd.add(stationFrom);
 
-                    for (Element connection : connections){
+                    for (Element connection : connections) {
                         String stationConnection = connection.attr("title");
                         int stationFirstIndex = stationConnection.indexOf('«');
                         int stationLastIndex = stationConnection.lastIndexOf('»');
@@ -84,10 +85,11 @@ public class ParseHtml {
                         String lineConnection = connection.attr("class");
                         int lineIndex = lineConnection.lastIndexOf('-');
 
-                        Station stationTo = new Station(lineConnection.substring(lineIndex + 1),
+                        stationTo = new Station(lineConnection.substring(lineIndex + 1),
                                 stationConnection.substring(stationFirstIndex + 1, stationLastIndex));
                         connectionsAdd.add(stationTo);
                     }
+
                     connectionsArrayList.add(connectionsAdd);
                 }
             }
