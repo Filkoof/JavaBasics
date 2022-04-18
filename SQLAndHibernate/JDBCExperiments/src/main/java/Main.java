@@ -1,35 +1,28 @@
-import java.sql.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 
 public class Main {
 
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/skillbox";
-        String user = "root";
-        String pass = "testtest";
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml").build();
+        Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
+        SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 
-        try {
-            Connection connection = DriverManager.getConnection(url, user, pass);
+        Session session = sessionFactory.openSession();
 
-            Statement statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("SELECT\n" +
-                    "course_name `name`,\n" +
-                    "count(month(subscription_date)) / (timestampdiff(MONTH , \n" +
-                    "min(subscription_date) , max(subscription_date)) +1 ) `avg`\n" +
-                    "FROM purchaselist\n" +
-                    "group by course_name;");
-            while (resultSet.next()){
-                String courseName = resultSet.getString("name");
-                String averageMonthBuy = resultSet.getString("avg");
-                System.out.println(courseName + " - " + averageMonthBuy);
+        for (int i = 1; ; i++) {
+            Course course = session.get(Course.class, i);
+            if (course.getName().isEmpty()){
+                break;
             }
-
-            resultSet.close();
-            statement.close();
-            connection.close();
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("На курсе " + course.getName() + " - " + course.getStudentCount() + " учеников");
         }
+        sessionFactory.close();
     }
 }
