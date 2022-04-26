@@ -5,7 +5,6 @@ import java.util.Date;
 @Table(name = "Students")
 public class Student {
     @Id
-    @OneToMany(cascade = CascadeType.ALL)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

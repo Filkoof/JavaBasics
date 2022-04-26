@@ -5,7 +5,6 @@ import java.util.List;
 @Table(name = "Courses")
 public class Course {
     @Id
-    @OneToMany(cascade = CascadeType.ALL)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

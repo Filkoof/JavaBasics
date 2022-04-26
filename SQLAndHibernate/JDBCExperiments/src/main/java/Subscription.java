@@ -1,18 +1,14 @@
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Subscription {
     @EmbeddedId
     private Key id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "course_id", insertable = false, updatable = false)
     private int courseId;
 
