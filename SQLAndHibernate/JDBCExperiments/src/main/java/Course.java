@@ -6,7 +6,7 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
 
@@ -18,11 +18,11 @@ public class Course {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Teacher teacher;
 
-    @Column(name = "students_count")
-    private int studentCount;
+    @Column(name = "students_count", nullable = true)
+    private Integer studentCount;
 
     private int price;
 
@@ -35,11 +35,11 @@ public class Course {
     inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private List<Student> students;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -83,11 +83,11 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public int getStudentCount() {
+    public Integer getStudentCount() {
         return studentCount;
     }
 
-    public void setStudentCount(int studentCount) {
+    public void setStudentCount(Integer studentCount) {
         this.studentCount = studentCount;
     }
 

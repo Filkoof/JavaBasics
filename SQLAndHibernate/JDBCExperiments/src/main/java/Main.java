@@ -6,9 +6,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.util.List;
-
-
 public class Main {
 
     public static void main(String[] args) {
@@ -20,12 +17,12 @@ public class Main {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Course course = session.get(Course.class, 1);
-        List<Student> studentList = course.getStudents();
-
-        for (Student student : studentList) {
-            System.out.println(student.getName());
-        }
+        String fillTable = """
+                insert into skillbox.linkedpurchaselist (course_id, student_id)
+                select st.id, c.id from purchaselist pur\s
+                join students st on pur.student_name=st.name\s
+                join courses c on pur.course_name=c.name;""";
+        session.createSQLQuery(fillTable).executeUpdate();
 
         transaction.commit();
         sessionFactory.close();

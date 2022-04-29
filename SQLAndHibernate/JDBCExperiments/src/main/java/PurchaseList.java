@@ -1,34 +1,35 @@
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Table(name = "PurchaseList")
-public class Purchase {
+public class PurchaseList {
+    @ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "student_name")
-    private String studentName;
+    private Student student;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "course_name")
-    private String courseName;
+    private Course course;
 
     private int price;
 
     @Column(name = "subscription_date")
     private Date subscriptionDate;
 
-    public String getStudentName() {
-        return studentName;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourse (Course course) {
+        this.course = course;
     }
 
     public int getPrice() {

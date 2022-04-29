@@ -1,29 +1,19 @@
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Subscriptions")
-public class Subscription {
+@Table(name = "linkedpurchaselist")
+public class LinkedPurchaseList {
     @EmbeddedId
-    private Key id;
+    private PurchaseListKey id;
 
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;
 
     @Column(name = "course_id", insertable = false, updatable = false)
     private int courseId;
-
-    @Column(name = "subscription_date")
-    private Date subscriptionsDate;
-
-    public Key getId() {
-        return id;
-    }
-
-    public void setId(Key id) {
-        this.id = id;
-    }
-
 
     public int getStudentId() {
         return studentId;
@@ -41,12 +31,12 @@ public class Subscription {
         this.courseId = courseId;
     }
 
-    public Date getSubscriptionsDate() {
-        return subscriptionsDate;
+    public PurchaseListKey getId() {
+        return id;
     }
 
-    public void setSubscriptionsDate(Date subscriptionsDate) {
-        this.subscriptionsDate = subscriptionsDate;
+    public void setId(PurchaseListKey id) {
+        this.id = id;
     }
 }
 
