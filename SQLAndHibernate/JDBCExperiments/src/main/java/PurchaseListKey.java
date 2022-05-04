@@ -5,34 +5,29 @@ import java.util.Objects;
 
 @Embeddable
 public class PurchaseListKey implements Serializable {
-    @Column(name = "student_id")
-    private int studentId;
+    @Column(name = "student_name")
+    private int studentName;
 
-    @Column(name = "course_id")
-    private int courseId;
+    @Column(name = "course_name")
+    private int courseName;
 
     public PurchaseListKey() {
     }
 
-    public PurchaseListKey(int studentId, int courseId) {
-        this.studentId = studentId;
-        this.courseId = courseId;
+    public int getStudentName() {
+        return studentName;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public void setStudentName(int studentName) {
+        this.studentName = studentName;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public int getCourseName() {
+        return courseName;
     }
 
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public void setCourseName(int courseName) {
+        this.courseName = courseName;
     }
 
     @Override
@@ -40,11 +35,11 @@ public class PurchaseListKey implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PurchaseListKey purchaseListKey= (PurchaseListKey) o;
-        return studentId == purchaseListKey.studentId && courseId == purchaseListKey.courseId;
+        return studentName == purchaseListKey.studentName && courseName == purchaseListKey.courseName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentId, courseId);
+        return Objects.hash(studentName, courseName);
     }
 }

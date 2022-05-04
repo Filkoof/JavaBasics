@@ -1,35 +1,36 @@
 import javax.persistence.*;
 import java.util.Date;
-
+@Entity
 @Table(name = "PurchaseList")
 public class PurchaseList {
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "student_name")
-    private Student student;
+    @EmbeddedId
+    private PurchaseListKey id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "course_name")
-    private Course course;
+    @Column(name = "student_name", insertable = false, updatable = false)
+    private String studentName;
+
+    @Column(name = "student_name", insertable = false, updatable = false)
+    private String courseName;
 
     private int price;
 
     @Column(name = "subscription_date")
     private Date subscriptionDate;
 
-    public Student getStudent() {
-        return student;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setCourse (Course course) {
-        this.course = course;
+    public void setCourseName (String courseName) {
+        this.courseName = courseName;
     }
 
     public int getPrice() {
@@ -46,5 +47,13 @@ public class PurchaseList {
 
     public void setSubscriptionDate(Date subscriptionDate) {
         this.subscriptionDate = subscriptionDate;
+    }
+
+    public PurchaseListKey getId() {
+        return id;
+    }
+
+    public void setId(PurchaseListKey id) {
+        this.id = id;
     }
 }

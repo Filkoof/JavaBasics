@@ -6,8 +6,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "linkedpurchaselist")
 public class LinkedPurchaseList {
+
     @EmbeddedId
-    private PurchaseListKey id;
+    private LinkedPurchaseListKey id;
 
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;
@@ -17,6 +18,9 @@ public class LinkedPurchaseList {
 
     public int getStudentId() {
         return studentId;
+    }
+
+    public LinkedPurchaseList() {
     }
 
     public void setStudentId(int studentId) {
@@ -31,11 +35,11 @@ public class LinkedPurchaseList {
         this.courseId = courseId;
     }
 
-    public PurchaseListKey getId() {
+    public LinkedPurchaseListKey getId() {
         return id;
     }
 
-    public void setId(PurchaseListKey id) {
+    public void setId(LinkedPurchaseListKey id) {
         this.id = id;
     }
 }
