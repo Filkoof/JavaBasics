@@ -9,7 +9,7 @@ public class PurchaseList {
     @Column(name = "student_name", insertable = false, updatable = false)
     private String studentName;
 
-    @Column(name = "student_name", insertable = false, updatable = false)
+    @Column(name = "course_name", insertable = false, updatable = false)
     private String courseName;
 
     private int price;

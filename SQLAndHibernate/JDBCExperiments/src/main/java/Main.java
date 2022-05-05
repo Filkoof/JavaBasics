@@ -1,3 +1,4 @@
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,12 +30,13 @@ public class Main {
 
         List<PurchaseList> purchaseLists = session.createQuery(query).getResultList();
 
-//        for (PurchaseList purchaseList : purchaseLists) {
-//            System.out.println(purchaseList.getCourseName());
-//            System.out.println(purchaseList.getStudentName());
-//        }
+        for (PurchaseList purchaseList : purchaseLists) {
+            System.out.println(purchaseList.getCourseName());
+            System.out.println(purchaseList.getStudentName());
+        }
 
         transaction.commit();
+        session.close();
         sessionFactory.close();
     }
 }
