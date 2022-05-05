@@ -14,6 +14,11 @@ public class LinkedPurchaseListKey implements Serializable {
     public LinkedPurchaseListKey() {
     }
 
+    public LinkedPurchaseListKey(int studentId, int courseId) {
+        this.studentId = studentId;
+        this.courseId = courseId;
+    }
+
     public int getStudentId() {
         return studentId;
     }

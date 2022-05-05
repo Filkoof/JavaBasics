@@ -6,27 +6,27 @@ import java.util.Objects;
 @Embeddable
 public class PurchaseListKey implements Serializable {
     @Column(name = "student_name")
-    private int studentName;
+    private String studentName;
 
     @Column(name = "course_name")
-    private int courseName;
+    private String courseName;
 
     public PurchaseListKey() {
     }
 
-    public int getStudentName() {
+    public String getStudentName() {
         return studentName;
     }
 
-    public void setStudentName(int studentName) {
+    public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
-    public int getCourseName() {
+    public String getCourseName() {
         return courseName;
     }
 
-    public void setCourseName(int courseName) {
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
