@@ -1,49 +1,46 @@
+import org.imgscalr.Scalr;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.RenderedImage;
 import java.io.File;
 
 public class ImageResizer extends Thread{
 
     private final File[] files;
     private final int newWidth;
+
+    private final int newHeight;
     private final String dstFolder;
 
-    public ImageResizer(File[] files, int newWidth, String dstFolder) {
+    public ImageResizer(File[] files, int newHeight, int newWidth, String dstFolder) {
         this.files = files;
+        this.newHeight = newHeight;
         this.newWidth = newWidth;
         this.dstFolder = dstFolder;
     }
 
     @Override
     public void run() {
+        BufferedImage image;
         try {
             for (File file : files) {
-                BufferedImage image = ImageIO.read(file);
-                if (image == null) {
-                    continue;
-                }
-
-                int newHeight = (int) Math.round(
-                        image.getHeight() / (image.getWidth() / (double) newWidth)
-                );
-                BufferedImage newImage = new BufferedImage(
-                        newWidth, newHeight, BufferedImage.TYPE_INT_RGB
-                );
-
-                int widthStep = image.getWidth() / newWidth;
-                int heightStep = image.getHeight() / newHeight;
-
-                for (int x = 0; x < newWidth; x++) {
-                    for (int y = 0; y < newHeight; y++) {
-                        int rgb = image.getRGB(x * widthStep, y * heightStep);
-                        newImage.setRGB(x, y, rgb);
+                image = ImageIO.read(file);
+                if (newWidth > 0 && newHeight > 0) {
+                    BufferedImage resizedImage = Scalr.resize(image, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
+                            newWidth, newHeight, new ConvolveOp[]{Scalr.OP_ANTIALIAS});
+                    if (resizedImage.getHeight() > newHeight) {
+                        resizedImage = Scalr.crop(resizedImage, resizedImage.getWidth(), newHeight);
                     }
+                    ImageIO.write(resizedImage, "PNG", new File(dstFolder + "\\" + file.getName()));
+                } else {
+                    ImageIO.write((RenderedImage) file, "PNG", new File(dstFolder + "\\" + file.getName()));
                 }
 
-                File newFile = new File(dstFolder + "/" + file.getName());
-                ImageIO.write(newImage, "jpg", newFile);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }    }
+        }
+    }
 }

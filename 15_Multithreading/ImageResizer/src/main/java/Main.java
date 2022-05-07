@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Main {
     private static final int newWidth = 300;
-
+    private static final int newHeight = 300;
 
     public static void main(String[] args) {
         String srcFolder = "C:\\src";
@@ -26,7 +26,7 @@ public class Main {
 
         for (File[] file : allFiles) {
             System.out.println(file.length);
-            ImageResizer resizer = new ImageResizer(file, newWidth, dstFolder);
+            ImageResizer resizer = new ImageResizer(file,newHeight, newWidth, dstFolder);
             new Thread(resizer).start();
         }
     }
