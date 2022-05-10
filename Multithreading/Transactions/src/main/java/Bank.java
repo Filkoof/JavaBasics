@@ -1,8 +1,9 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class Bank {
-    private Map<String, Account> accounts;
+public class Bank extends Thread {
+    private final Map<String, Account> accounts = new HashMap<>();
     private final Random random = new Random();
 
     public synchronized boolean isFraud(String fromAccountNum, String toAccountNum, long amount)
@@ -33,6 +34,10 @@ public class Bank {
                 }
             }
         }
+    }
+
+    public void fillAccounts(String accNum, Account account){
+        accounts.put(accNum, account);
     }
 
     public long getBalance(String accountNum) {
