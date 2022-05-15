@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseHtml {
-    public static List<String> urlList = new ArrayList<>();
+    public static ArrayList<String> urlList = new ArrayList<>();
     private static List<String> checkList = new ArrayList<>();
 
 

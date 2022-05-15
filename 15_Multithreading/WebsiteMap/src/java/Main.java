@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 
@@ -9,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         ForkJoinPool pool = new ForkJoinPool();
         ParseHtml.readHtml(URL,PAGE_LEVEL);
-        List<String> urls = ParseHtml.urlList;
+        ArrayList<String> urls = ParseHtml.urlList;
 
         MyRecursiveAction app = new MyRecursiveAction(URL, DST, PAGE_LEVEL, urls);
 
