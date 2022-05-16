@@ -1,18 +1,26 @@
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.concurrent.ForkJoinPool;
 
 public class Main {
-    private static final String URL = "https://skillbox.ru/";
     private static final String DST = "data/siteMap.txt";
-    private static final int PAGE_LEVEL = 0;
+    static final Set<String> siteMapSet = new LinkedHashSet<>();
 
-    public static void main(String[] args) {
-        ForkJoinPool pool = new ForkJoinPool();
-        ParseHtml.readHtml(URL,PAGE_LEVEL);
-        List<String> urls = ParseHtml.urlList;
+    public static void main(String[] args) throws InterruptedException {
+        new ForkJoinPool().invoke(new RecursiveParseHtml(ParseHtml.readHtml(ParseHtml.URL)));
 
-        MyRecursiveAction app = new MyRecursiveAction(URL, DST, PAGE_LEVEL, urls);
+        ParseHtml.readHtml(ParseHtml.URL);
+        for (String url : siteMapSet) {
+            System.out.println(url);
+        }
 
-        pool.invoke(app);
+        try {
+            Files.write(Path.of(DST), siteMapSet);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
