@@ -3,50 +3,42 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParseHtml {
+    public static List<String> urlList = new ArrayList<>();
+    private static List<String> checkList = new ArrayList<>();
 
-    public static final String URL = "https://skillbox.ru/";
-    public static final List<String> STOP_WORDS = Arrays.asList("instagram", ".pdf", "twitter", "facebook", "utm", "vkontakte");
 
-    public static Set<String> readHtml(String pageUrl) throws InterruptedException {
-        Thread.sleep(150);
-        Set<String> urls = new HashSet<>();
+    public static void writeFile(String dst, ArrayList urlList) throws IOException {
+        Files.write(Path.of(dst), urlList);
+    }
 
+    public static void readHtml(String url, int pageLevel) {
         try {
-            Document doc = Jsoup.connect(pageUrl).get();
+            Document doc = Jsoup.connect(url).get();
+
             Elements elements = doc.select("a[href]");
+            String subUrl;
+
+            Thread.sleep(150);
 
             for (Element element : elements) {
-                String url = element.attr("abs:href");
-                int backslashCount = 0;
+                subUrl = element.attr("abs:href");
 
-                for (char symbol : url.toCharArray()){
-                    if (symbol == '/') backslashCount++;
-                }
+                if (subUrl.startsWith(url) && !subUrl.endsWith("#") && !subUrl.endsWith(".pdf") && !checkList.contains(subUrl)) {
+                    checkList.add(subUrl);
+                    urlList.add("\t".repeat(pageLevel) + subUrl);
 
-                if (STOP_WORDS.stream().noneMatch(url::contains)) {
-                    if (url.startsWith("http") && url.contains("skillbox.ru")) {
-                        synchronized (Main.siteMapSet) {
-                            if (!Main.siteMapSet.contains(url)) {
-                                if (backslashCount - 3 <= 0) {
-                                    urls.add(url);
-                                    Main.siteMapSet.add(url);
-                                } else {
-                                    String s = "\t".repeat(backslashCount - 3) + url;
-                                    urls.add(s);
-                                    Main.siteMapSet.add(s);
-                                }
-                            }
-                        }
-                    }
+                    readHtml(subUrl, pageLevel + 1);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return urls;
     }
 }
