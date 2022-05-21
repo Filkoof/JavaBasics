@@ -1,51 +1,53 @@
 package main;
 
+import response.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Storage {
     private static int currentId = 1;
-    private static HashMap<Integer, Affair> affairs = new HashMap<>();
+    private static HashMap<Integer, Task> tasks = new HashMap<>();
 
-    public static List<Affair> getAffairs() {
-        ArrayList<Affair> affairsList = new ArrayList<>();
-        affairsList.addAll(affairs.values());
-        return affairsList;
+    public static List<Task> getTasks() {
+        ArrayList<Task> taskList = new ArrayList<>();
+        taskList.addAll(tasks.values());
+        return taskList;
     }
 
-    public static int addAffair(Affair affair) {
+    public static int addAffair(Task task) {
         int id = currentId++;
-        affair.setId(id);
-        affairs.put(id, affair);
+        task.setId(id);
+        tasks.put(id, task);
         return id;
     }
 
-    public static Affair getAffair(int affairId){
-        if (affairs.containsKey(affairId)) {
-            return affairs.get(affairId);
+    public static Task getTask(int taskId){
+        if (tasks.containsKey(taskId)) {
+            return tasks.get(taskId);
         }
         return null;
     }
 
-    public static Affair deleteAffair(int id) {
-        if (affairs.containsKey(id)) {
-            return affairs.remove(id);
+    public static Task deleteTask(int id) {
+        if (tasks.containsKey(id)) {
+            return tasks.remove(id);
         }
         return null;
     }
 
-    public static Affair patchAffair(Affair affair) {
-        if (affairs.containsKey(affair.getId())) {
-            return affairs.replace(affair.getId(), affair);
+    public static Task patchTask(Task task) {
+        if (tasks.containsKey(task.getId())) {
+            return tasks.replace(task.getId(), task);
         }
         return null;
     }
 
-    public static List<Affair> deleteAffairs() {
-        ArrayList<Affair> affairsList = new ArrayList<>();
-        affairs.clear();
-        affairsList.addAll(affairs.values());
+    public static List<Task> deleteTask() {
+        ArrayList<Task> affairsList = new ArrayList<>();
+        tasks.clear();
+        affairsList.addAll(tasks.values());
         return affairsList;
     }
 }

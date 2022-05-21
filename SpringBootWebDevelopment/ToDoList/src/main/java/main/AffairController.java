@@ -3,50 +3,51 @@ package main;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import response.Task;
 
 import java.util.List;
 
 @RestController
 public class AffairController {
 
-    @PostMapping("/affairs/")
-    public int add(Affair affair) {
-        return Storage.addAffair(affair);
+    @PostMapping("/tasks/")
+    public int add(Task task) {
+        return Storage.addAffair(task);
     }
 
-    @DeleteMapping("/affairs/{id}")
+    @DeleteMapping("/tasks/{id}")
     public ResponseEntity delete(@PathVariable int id) {
-        Affair affair = Storage.getAffair(id);
-        if (affair == null) {
+        Task task = Storage.getTask(id);
+        if (task == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        return new ResponseEntity(Storage.deleteAffair(id), HttpStatus.OK);
+        return new ResponseEntity(Storage.deleteTask(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/affairs/")
+    @DeleteMapping("/tasks/")
     public ResponseEntity deleteList() {
-        return new ResponseEntity(Storage.deleteAffairs(), HttpStatus.OK);
+        return new ResponseEntity(Storage.deleteTask(), HttpStatus.OK);
     }
 
-    @PutMapping("/affairs/{id}")
-    public ResponseEntity patch(Affair affair) {
-        if (affair == null) {
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity patch(Task task) {
+        if (task == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        return new ResponseEntity(Storage.patchAffair(affair), HttpStatus.OK);
+        return new ResponseEntity(Storage.patchTask(task), HttpStatus.OK);
     }
 
-    @GetMapping("/affairs/{id}")
+    @GetMapping("/tasks/{id}")
     public ResponseEntity get(@PathVariable int id) {
-        Affair affair = Storage.getAffair(id);
-        if (affair == null) {
+        Task task = Storage.getTask(id);
+        if (task == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        return new ResponseEntity(affair,HttpStatus.OK);
+        return new ResponseEntity(task, HttpStatus.OK);
     }
 
-    @GetMapping("/affairs/")
-    public List<Affair> list(){
-        return Storage.getAffairs();
+    @GetMapping("/tasks/")
+    public List<Task> list(){
+        return Storage.getTasks();
     }
 }
