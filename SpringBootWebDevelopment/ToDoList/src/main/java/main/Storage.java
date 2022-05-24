@@ -1,6 +1,6 @@
 package main;
 
-import response.Task;
+import main.model.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class Storage {
         return taskList;
     }
 
-    public static int addAffair(Task task) {
+    public static int addTask(Task task) {
         int id = currentId++;
         task.setId(id);
         tasks.put(id, task);
