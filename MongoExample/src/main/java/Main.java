@@ -2,8 +2,11 @@ import com.mongodb.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Projections;
 import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,11 +39,16 @@ public class Main {
         collection.find(queryOlderThan).forEach((Consumer<Document>) olderThan::add);
         System.out.println("— количество студентов старше 40 лет: " + olderThan.size() + "\n");
 
-        BsonDocument queryYoungest = BsonDocument.parse("{Age:1}");
-        System.out.println("— имя самого молодого студента: " + collection.find().sort(queryYoungest).first() + "\n");
 
+        Bson projectionYoungest = Projections.fields(Projections.include("Name"), Projections.excludeId());
+        BsonDocument queryYoungest = BsonDocument.parse("{Age:1}");
+        System.out.println("— имя самого молодого студента: " + collection.find()
+                .projection(projectionYoungest).sort(queryYoungest).first() + "\n");
+
+        Bson projectionOldest = Projections.fields(Projections.include("Courses"), Projections.excludeId());
         BsonDocument queryOldest = BsonDocument.parse("{Age:-1}");
-        System.out.println("— список курсов самого старого студента: " + collection.find().sort(queryOldest).first() + "\n");
+        System.out.println("— список курсов самого старого студента: " + collection.find()
+                .projection(projectionOldest).sort(queryOldest).first() + "\n");
     }
 
     public static List<Document> read(String path) throws IOException {
