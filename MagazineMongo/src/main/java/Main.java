@@ -74,11 +74,11 @@ public class Main {
         for (Document document : documents) {
             String shopName = String.valueOf(document.get("_id"));
             System.out.println("Магазин: " + shopName +
-                    "\nКоличество товара: " + document.get("count_products") +
-                    "\nСредняя цена товара: " + document.get("avg_price") +
-                    "\nСамый дорогой товар:  " + document.get("max_price") +
-                    "\nСамый дешевый товар:  " + document.get("min_price") +
-                    "\nКоличество товаров, дешевле 100 рублей: " + cheapestProductCount(shopName));
+                    "\n\tКоличество товара: " + document.get("count_products") +
+                    "\n\tСредняя цена товара: " + document.get("avg_price") +
+                    "\n\tСамый дорогой товар:  " + document.get("max_price") +
+                    "\n\tСамый дешевый товар:  " + document.get("min_price") +
+                    "\n\tКоличество товаров, дешевле 100 рублей: " + cheapestProductCount(shopName));
         }
     }
 
