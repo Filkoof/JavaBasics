@@ -64,14 +64,17 @@ public class Main {
     public static void showStatistic() {
         AggregateIterable<Document> documents = products.aggregate(Arrays.asList(
                 Aggregates.lookup("Shops", "ShopName", "ProductsList", "shops_list"),
-                Aggregates.unwind("$shops_list"),
-                Aggregates.group("$shops_list.name",
+                Aggregates.unwind("$shops_list")));
+                Aggregates.group("$shops_list.ShopName",
                         Accumulators.sum("count_products", 1),
-                        Accumulators.min("min_price", "$price"),
-                        Accumulators.max("max_price", "$price"),
-                        Accumulators.avg("avg_price", "$price"))));
+                        Accumulators.min("min_price", "$Price"),
+                        Accumulators.max("max_price", "$Price"),
+                        Accumulators.avg("avg_price", "$Price"))));
+        System.out.println(documents);
 
         for (Document document : documents) {
+            System.out.println(document);
+
             String shopName = (String) document.get("_id");
             System.out.println("Магазин " + shopName);
             System.out.println("Количество товара: " + document.get("count_products"));
