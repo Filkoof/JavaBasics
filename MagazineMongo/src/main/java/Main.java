@@ -64,7 +64,7 @@ public class Main {
     public static void showStatistic() {
         AggregateIterable<Document> documents = products.aggregate(Arrays.asList(
                 Aggregates.lookup("Shops", "ShopName", "ProductsList", "shops_list"),
-                Aggregates.unwind("$shops_list")));
+                Aggregates.unwind("$shops_list"),
                 Aggregates.group("$shops_list.ShopName",
                         Accumulators.sum("count_products", 1),
                         Accumulators.min("min_price", "$Price"),
