@@ -6,16 +6,16 @@ public class Loader {
         long start = System.currentTimeMillis();
         int coreCount = Runtime.getRuntime().availableProcessors();
 
-        StringBuilder builder = null;
+        StringBuffer buffer = null;
 
         for (int regionCode = 1; regionCode < 100; regionCode++) {
-            builder = new StringBuilder();
+            buffer = new StringBuffer();
             for (int number = 1; number < 1000; number++) {
                 for (char firstLetter : letters) {
                     for (char secondLetter : letters) {
                         for (char thirdLetter : letters) {
 
-                            builder.append(firstLetter)
+                            buffer.append(firstLetter)
                                     .append(padNumber(number, 3))
                                     .append(secondLetter)
                                     .append(thirdLetter)
@@ -28,7 +28,7 @@ public class Loader {
         }
         for (int i = 0; i < coreCount; i++) {
             int fileNumber = i + 1;
-            WriteToFile write = new WriteToFile("res/numbers" + fileNumber + ".txt", start, builder.toString());
+            WriteToFile write = new WriteToFile("res/numbers" + fileNumber + ".txt", start, buffer.toString());
             new Thread(write).start();
         }
     }
