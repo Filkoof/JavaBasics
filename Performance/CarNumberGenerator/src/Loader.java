@@ -1,41 +1,46 @@
-import java.io.FileOutputStream;
-
 public class Loader {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        char[] letters = {'У', 'К', 'Е', 'Н', 'Х', 'В', 'А', 'Р', 'О', 'С', 'М', 'Т'};
+
         long start = System.currentTimeMillis();
+        int coreCount = Runtime.getRuntime().availableProcessors();
 
-        FileOutputStream writer = new FileOutputStream("res/numbers.txt");
+        StringBuilder builder = null;
 
-        char letters[] = {'У', 'К', 'Е', 'Н', 'Х', 'В', 'А', 'Р', 'О', 'С', 'М', 'Т'};
-        for (int number = 1; number < 1000; number++) {
-            int regionCode = 199;
-            for (char firstLetter : letters) {
-                for (char secondLetter : letters) {
-                    for (char thirdLetter : letters) {
-                        String carNumber = firstLetter + padNumber(number, 3) +
-                            secondLetter + thirdLetter + padNumber(regionCode, 2);
-                        writer.write(carNumber.getBytes());
-                        writer.write('\n');
+        for (int regionCode = 1; regionCode < 100; regionCode++) {
+            builder = new StringBuilder();
+            for (int number = 1; number < 1000; number++) {
+                for (char firstLetter : letters) {
+                    for (char secondLetter : letters) {
+                        for (char thirdLetter : letters) {
+
+                            builder.append(firstLetter)
+                                    .append(padNumber(number, 3))
+                                    .append(secondLetter)
+                                    .append(thirdLetter)
+                                    .append(padNumber(regionCode, 2))
+                                    .append('\n');
+                        }
                     }
                 }
             }
         }
-
-        writer.flush();
-        writer.close();
-
-        System.out.println((System.currentTimeMillis() - start) + " ms");
+        for (int i = 0; i < coreCount; i++) {
+            int fileNumber = i + 1;
+            WriteToFile write = new WriteToFile("res/numbers" + fileNumber + ".txt", start, builder.toString());
+            new Thread(write).start();
+        }
     }
 
     private static String padNumber(int number, int numberLength) {
-        String numberStr = Integer.toString(number);
+        StringBuilder numberStr = new StringBuilder(Integer.toString(number));
         int padSize = numberLength - numberStr.length();
 
         for (int i = 0; i < padSize; i++) {
-            numberStr = '0' + numberStr;
+            numberStr.insert(0, '0');
         }
 
-        return numberStr;
+        return numberStr.toString();
     }
 }
