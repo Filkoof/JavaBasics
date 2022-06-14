@@ -3,10 +3,10 @@ import java.util.Date;
 
 public class Voter {
 
-    private String name;
-    private Date birthDay;
+    private final String name;
+    private final String birthDay;
 
-    public Voter(String name, Date birthDay) {
+    public Voter(String name, String birthDay) {
         this.name = name;
         this.birthDay = birthDay;
     }
@@ -19,23 +19,23 @@ public class Voter {
 
     @Override
     public int hashCode() {
-        long code = name.hashCode() + birthDay.hashCode();
+        int code = name.hashCode() + birthDay.hashCode();
         while (code > Integer.MAX_VALUE) {
             code = code / 10;
         }
-        return (int) code;
+        return code;
     }
 
     public String toString() {
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy.MM.dd");
-        return name + " (" + dayFormat.format(birthDay) + ")";
+        return name + " (" + birthDay + ")";
     }
 
     public String getName() {
         return name;
     }
 
-    public Date getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 }
