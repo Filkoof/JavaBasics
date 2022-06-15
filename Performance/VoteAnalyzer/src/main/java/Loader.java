@@ -14,40 +14,23 @@ import java.util.HashMap;
 
 public class Loader {
 
-    private static final SimpleDateFormat birthDayFormat = new SimpleDateFormat("yyyy.MM.dd");
     private static final SimpleDateFormat visitDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
     private static final HashMap<Integer, WorkTime> voteStationWorkTimes = new HashMap<>();
-    private static final HashMap<Voter, Integer> voterCounts = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
-        String fileName = "res/data-18M.xml";
-        int usage = (int) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+        String fileName = "res/data-1572M.xml";
+        long start = System.currentTimeMillis();
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         XMLHandler handler = new XMLHandler();
         parser.parse(new File(fileName), handler);
-        handler.printDuplicatedVoters();
+
+        DBConnection.executeMultiInsert();
 
 //        parseFile(fileName);
-//
-//        System.out.println("Voting station work times: ");
-//        for (Integer votingStation : voteStationWorkTimes.keySet()) {
-//            WorkTime workTime = voteStationWorkTimes.get(votingStation);
-//            System.out.println("\t" + votingStation + " - " + workTime);
-//        }
-//
-//        System.out.println("Duplicated voters: ");
-//        for (Voter voter : voterCounts.keySet()) {
-//            Integer count = voterCounts.get(voter);
-//            if (count > 1) {
-//                System.out.println("\t" + voter + " - " + count);
-//            }
-//        }
-
-        usage = (int) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage);
-        System.out.println(usage);
+        System.out.println("Parsing duration: " + (System.currentTimeMillis() - start) + "ms");
     }
 
     private static void parseFile(String fileName) throws Exception {
@@ -69,10 +52,9 @@ public class Loader {
             String name = attributes.getNamedItem("name").getNodeValue();
             String birthDay = attributes.getNamedItem("birthDay").getNodeValue();
 
-            Voter voter = new Voter(name, birthDay);
-            Integer count = voterCounts.get(voter);
-            voterCounts.put(voter, count == null ? 1 : count + 1);
+            DBConnection.countVoter(name, birthDay);
         }
+        DBConnection.executeMultiInsert();
     }
 
     private static void fixWorkTimes(Document doc) throws Exception {
